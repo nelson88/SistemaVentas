@@ -18,7 +18,7 @@ namespace CapaDatos
             SqlDataReader leer;
 
             command.Connection = AbrirConexion();
-            command.CommandText = "SELECT * FROM dbo.Cliente";
+            command.CommandText = "SELECT c.ClienteId, PrimerNombre, Telefono, Cedula, Direccion FROM dbo.Cliente c";
             leer = command.ExecuteReader();
             dt.Load(leer);
             CerrarConexion();

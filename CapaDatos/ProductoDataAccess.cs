@@ -17,7 +17,41 @@ namespace CapaDatos
         public DataTable ObtnerProductos()
         {
             command.Connection = AbrirConexion();
-            command.CommandText = "SELECT * FROM dbo.Producto";
+            command.CommandText = @"SELECT p.ProductoId, pc.ProductoCategoriaId, 'BMC-'+p.Codigo Codigo, pc.Categoria, p.Nombre, p.Cantidad, p.Descripcion, p.Monto, p.Modificado
+                                   FROM dbo.Producto p
+                                   INNER JOIN dbo.ProductoCategoria pc ON pc.ProductoCategoriaId = p.ProductoCategoriaId";
+            leer = command.ExecuteReader();
+            dt.Load(leer);
+            CerrarConexion();
+            return dt;
+
+        }
+
+        public DataTable ObtnerProductosByCategoria(int ProductoCategoriaId, string nombre)
+        {
+            command.Connection = AbrirConexion();
+            command.CommandText = @"
+                                    IF @ProductoCategoriaId <> 1
+                                    BEGIN
+                                        SELECT p.ProductoId, pc.ProductoCategoriaId, 'BMC-'+p.Codigo Codigo, pc.Categoria, p.Nombre, p.Cantidad, p.Descripcion, p.Monto, p.Modificado
+                                        FROM dbo.Producto p
+                                        INNER JOIN dbo.ProductoCategoria pc ON pc.ProductoCategoriaId = p.ProductoCategoriaId
+                                        WHERE p.ProductoCategoriaId = @ProductoCategoriaId
+                                        ORDER BY p.Codigo
+                                    END
+                                    ELSE
+                                    BEGIN
+                                        SELECT p.ProductoId, pc.ProductoCategoriaId, 'BMC-'+p.Codigo Codigo, pc.Categoria, p.Nombre, p.Cantidad, p.Descripcion, p.Monto, p.Modificado
+                                        FROM dbo.Producto p
+                                        INNER JOIN dbo.ProductoCategoria pc ON pc.ProductoCategoriaId = p.ProductoCategoriaId
+                                    END";
+
+
+
+
+            command.Parameters.AddWithValue("@ProductoCategoriaId", ProductoCategoriaId);
+            command.Parameters.AddWithValue("@nombre", nombre);
+
             leer = command.ExecuteReader();
             dt.Load(leer);
             CerrarConexion();
@@ -73,6 +107,18 @@ namespace CapaDatos
             return data;
         }
 
+        public DataTable ObtnerCategoria()
+        {
+            command.Connection = AbrirConexion();
+            command.CommandText = @"SELECT pc.ProductoCategoriaId, pc.Categoria FROM dbo.ProductoCategoria pc";
+            leer = command.ExecuteReader();
+            dt.Load(leer);
+            leer.Close();
+            CerrarConexion();
+            return dt;
+
+        }
+
         public bool InsertarProducto(Producto producto)
         {
             bool succes = true;
@@ -83,12 +129,21 @@ namespace CapaDatos
                 using (var comm = new SqlCommand())
                 {
                     comm.Connection = cn;
-                    comm.CommandText = @"INSERT INTO dbo.Producto(ProductoId, Codigo, Nombre, Cantidad, Descripcion, Monto, Creado, Modificado)
-                                         VALUES(NEWID(), @codigo, @nombre, @cantidad, @descripcion, @monto, GETDATE(), GETDATE())";
+                    comm.CommandText = @"DECLARE @CodigoMax VARCHAR(10)
+                                         DECLARE @CodigoNuevo VARCHAR(10)
+
+                                         SELECT @CodigoMax = ISNULL(max(Codigo), '00000')
+                                         FROM  dbo.Producto p
+                                         WHERE p.ProductoCategoriaId = @ProductoCategoriaId
+
+                                         SELECT @CodigoNuevo = dbo.GeneradorCodigoProducto(@CodigoMax);
+
+                                         INSERT INTO dbo.Producto(ProductoId, Codigo, ProductoCategoriaId, Nombre, Cantidad, Descripcion, Monto, Creado, Modificado)
+                                         VALUES(NEWID(), @CodigoNuevo, @ProductoCategoriaId, @nombre, @cantidad, @descripcion, @monto, GETDATE(), GETDATE())";
                     try
                     {
                         comm.Parameters.AddWithValue("@productoId", producto.ProductoId);
-                        comm.Parameters.AddWithValue("@codigo", producto.Codigo);
+                        comm.Parameters.AddWithValue("@ProductoCategoriaId", producto.ProductoCategoriaId);
                         comm.Parameters.AddWithValue("@nombre", producto.Nombre);
                         comm.Parameters.AddWithValue("@cantidad", producto.Cantidad);
                         comm.Parameters.AddWithValue("@descripcion", producto.Descripcion);
@@ -118,8 +173,7 @@ namespace CapaDatos
                 {
                     comm.Connection = cn;
                     comm.CommandText = @"UPDATE dbo.Producto
-                                         SET Codigo = @codigo,
-                                             Nombre = @nombre,
+                                         SET Nombre = @nombre,
                                              Cantidad = @cantidad,
                                          	 Descripcion = @descripcion,
                                          	 Monto = @monto,
@@ -128,7 +182,6 @@ namespace CapaDatos
                     try
                     {
                         comm.Parameters.AddWithValue("@productoId", producto.ProductoId);
-                        comm.Parameters.AddWithValue("@codigo", producto.Codigo);
                         comm.Parameters.AddWithValue("@nombre", producto.Nombre);
                         comm.Parameters.AddWithValue("@cantidad", producto.Cantidad);
                         comm.Parameters.AddWithValue("@descripcion", producto.Descripcion);

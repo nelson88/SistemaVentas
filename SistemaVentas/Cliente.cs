@@ -38,9 +38,9 @@ namespace SistemaVentas
         {
             textBoxcedula.Text= "";
             textBoxprimernombre.Text= "";
-            textBoxsegundonombre.Text= "";
-            textBoxprimerapellido.Text= "";
-            textBoxsegundoapellido.Text = "";
+            //textBoxsegundonombre.Text= "";
+            //textBoxprimerapellido.Text= "";
+            //textBoxsegundoapellido.Text = "";
             textBoxdireccion.Text= "";
             textBoxtelefono.Text= "";
         }
@@ -58,13 +58,14 @@ namespace SistemaVentas
 
             if (sucess)
             {
-                venta.cliente.Cedula = Convert.ToString(textBoxcedula.Text);
                 venta.cliente.PrimerNombre = textBoxprimernombre.Text;
-                venta.cliente.SegundoNombre = textBoxsegundonombre.Text;
-                venta.cliente.PrimerApellido = textBoxprimerapellido.Text;
-                venta.cliente.SegundoApellido = textBoxsegundoapellido.Text;
-                venta.cliente.Direccion = textBoxdireccion.Text;
+                venta.cliente.Cedula = Convert.ToString(textBoxcedula.Text);
                 venta.cliente.Telefono = textBoxtelefono.Text;
+                venta.cliente.Direccion = textBoxdireccion.Text;
+                venta.cliente.SegundoNombre = "";
+                venta.cliente.PrimerApellido = "";
+                venta.cliente.SegundoApellido = "";
+                
 
                 if (Editar == false)
                 {
@@ -98,13 +99,13 @@ namespace SistemaVentas
         {
             bool success = false;
             
-            string cedula = Convert.ToString(textBoxcedula.Text);
+            //string cedula = Convert.ToString(textBoxcedula.Text);
             string primernombre = textBoxprimernombre.Text;
-            string primerApellido = textBoxprimerapellido.Text;
-            string direccion = textBoxdireccion.Text;
-            string telefono = textBoxtelefono.Text;
+            //string primerApellido = textBoxprimerapellido.Text;
+            //string direccion = textBoxdireccion.Text;
+            //string telefono = textBoxtelefono.Text;
             
-            if (cedula != "" && primernombre != "" && primerApellido != "" && direccion != "" && telefono != "")
+            if (primernombre != "" /*&& cedula != "" && primerApellido != "" && direccion != "" && telefono != ""*/)
             {
                 success = true;
             }
@@ -133,9 +134,6 @@ namespace SistemaVentas
                 Editar = true;
                 textBoxcedula.Text = dataGridView1.CurrentRow.Cells["Cedula"].Value.ToString();
                 textBoxprimernombre.Text = dataGridView1.CurrentRow.Cells["PrimerNombre"].Value.ToString();
-                textBoxsegundonombre.Text = dataGridView1.CurrentRow.Cells["SegundoNombre"].Value.ToString();
-                textBoxprimerapellido.Text = dataGridView1.CurrentRow.Cells["PrimerApellido"].Value.ToString();
-                textBoxsegundoapellido.Text = dataGridView1.CurrentRow.Cells["SegundoApellido"].Value.ToString();
                 textBoxdireccion.Text = dataGridView1.CurrentRow.Cells["Direccion"].Value.ToString();
                 textBoxtelefono.Text = dataGridView1.CurrentRow.Cells["Telefono"].Value.ToString();
                 clienteId = dataGridView1.CurrentRow.Cells["ClienteId"].Value.ToString();
