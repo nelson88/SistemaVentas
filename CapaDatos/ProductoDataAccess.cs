@@ -17,9 +17,10 @@ namespace CapaDatos
         public DataTable ObtnerProductos()
         {
             command.Connection = AbrirConexion();
-            command.CommandText = @"SELECT p.ProductoId, pc.ProductoCategoriaId, 'BMC-'+p.Codigo Codigo, pc.Categoria, p.Nombre, p.Cantidad, p.Descripcion, p.Monto, p.Modificado
-                                   FROM dbo.Producto p
-                                   INNER JOIN dbo.ProductoCategoria pc ON pc.ProductoCategoriaId = p.ProductoCategoriaId";
+            command.CommandText = @"SELECT p.ProductoId, pc.ProductoCategoriaId, 'BCM-'+p.Codigo Codigo, 
+                                           pc.Categoria, p.Articulo, p.Descripcion, p.Precio
+                                    FROM dbo.Producto p
+                                    INNER JOIN dbo.ProductoCategoria pc ON pc.ProductoCategoriaId = p.ProductoCategoriaId";
             leer = command.ExecuteReader();
             dt.Load(leer);
             CerrarConexion();

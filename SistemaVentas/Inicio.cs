@@ -132,12 +132,12 @@ namespace SistemaVentas
 
         private void btncompra_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new AsignacionProductoCliente());
+            AbrirFormHija(new Compras());
         }
 
         private void btnrecibo_Click_1(object sender, EventArgs e)
         {
-            AbrirFormHija(new Recibo());
+            AbrirFormHija(new Facturacion());
         }
 
         private void panelContenedor_Paint(object sender, PaintEventArgs e)
