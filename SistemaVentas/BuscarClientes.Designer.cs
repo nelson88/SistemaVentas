@@ -29,16 +29,15 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtcedula = new System.Windows.Forms.TextBox();
-            this.txtprimernombre = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtprimerapellido = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btncerrar = new System.Windows.Forms.PictureBox();
             this.btnminimizar = new System.Windows.Forms.PictureBox();
-            this.btnaceptar = new System.Windows.Forms.Button();
+            this.btnclienteseleccionado = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btncrearcliente = new System.Windows.Forms.Button();
+            this.lbcampo = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btncerrar)).BeginInit();
@@ -48,61 +47,20 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 91);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 111);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 347);
+            this.dataGridView1.Size = new System.Drawing.Size(380, 322);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(45, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Cedula";
-            // 
-            // txtcedula
-            // 
-            this.txtcedula.Location = new System.Drawing.Point(48, 65);
-            this.txtcedula.Name = "txtcedula";
-            this.txtcedula.Size = new System.Drawing.Size(176, 20);
-            this.txtcedula.TabIndex = 2;
-            // 
-            // txtprimernombre
-            // 
-            this.txtprimernombre.Location = new System.Drawing.Point(297, 65);
-            this.txtprimernombre.Name = "txtprimernombre";
-            this.txtprimernombre.Size = new System.Drawing.Size(197, 20);
-            this.txtprimernombre.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(294, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Primer Nombre";
-            // 
             // txtprimerapellido
             // 
-            this.txtprimerapellido.Location = new System.Drawing.Point(565, 65);
+            this.txtprimerapellido.Location = new System.Drawing.Point(206, 67);
             this.txtprimerapellido.Name = "txtprimerapellido";
             this.txtprimerapellido.Size = new System.Drawing.Size(167, 20);
             this.txtprimerapellido.TabIndex = 6;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(562, 51);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Primer Apellido";
             // 
             // panel1
             // 
@@ -112,14 +70,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(802, 32);
+            this.panel1.Size = new System.Drawing.Size(403, 32);
             this.panel1.TabIndex = 7;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // btncerrar
             // 
             this.btncerrar.Image = global::SistemaVentas.Properties.Resources.icon_cerrar2;
-            this.btncerrar.Location = new System.Drawing.Point(768, 7);
+            this.btncerrar.Location = new System.Drawing.Point(372, 7);
             this.btncerrar.Name = "btncerrar";
             this.btncerrar.Size = new System.Drawing.Size(20, 20);
             this.btncerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -130,7 +88,7 @@
             // btnminimizar
             // 
             this.btnminimizar.Image = global::SistemaVentas.Properties.Resources.icon_minimizar;
-            this.btnminimizar.Location = new System.Drawing.Point(739, 7);
+            this.btnminimizar.Location = new System.Drawing.Point(342, 7);
             this.btnminimizar.Name = "btnminimizar";
             this.btnminimizar.Size = new System.Drawing.Size(20, 20);
             this.btnminimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -138,29 +96,67 @@
             this.btnminimizar.TabStop = false;
             this.btnminimizar.Click += new System.EventHandler(this.btnminimizar_Click);
             // 
-            // btnaceptar
+            // btnclienteseleccionado
             // 
-            this.btnaceptar.Location = new System.Drawing.Point(614, 451);
-            this.btnaceptar.Name = "btnaceptar";
-            this.btnaceptar.Size = new System.Drawing.Size(129, 31);
-            this.btnaceptar.TabIndex = 15;
-            this.btnaceptar.Text = "Aceptar";
-            this.btnaceptar.UseVisualStyleBackColor = true;
-            this.btnaceptar.Click += new System.EventHandler(this.btnaceptar_Click);
+            this.btnclienteseleccionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnclienteseleccionado.Location = new System.Drawing.Point(12, 444);
+            this.btnclienteseleccionado.Name = "btnclienteseleccionado";
+            this.btnclienteseleccionado.Size = new System.Drawing.Size(224, 38);
+            this.btnclienteseleccionado.TabIndex = 15;
+            this.btnclienteseleccionado.Text = "Agregar Cliente Seleccionado";
+            this.btnclienteseleccionado.UseVisualStyleBackColor = true;
+            this.btnclienteseleccionado.Click += new System.EventHandler(this.btnaceptar_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(32, 66);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 16;
+            // 
+            // btncrearcliente
+            // 
+            this.btncrearcliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncrearcliente.Location = new System.Drawing.Point(258, 444);
+            this.btncrearcliente.Name = "btncrearcliente";
+            this.btncrearcliente.Size = new System.Drawing.Size(134, 38);
+            this.btncrearcliente.TabIndex = 17;
+            this.btncrearcliente.Text = "Crear Cliente";
+            this.btncrearcliente.UseVisualStyleBackColor = true;
+            // 
+            // lbcampo
+            // 
+            this.lbcampo.AutoSize = true;
+            this.lbcampo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbcampo.Location = new System.Drawing.Point(30, 44);
+            this.lbcampo.Name = "lbcampo";
+            this.lbcampo.Size = new System.Drawing.Size(57, 16);
+            this.lbcampo.TabIndex = 18;
+            this.lbcampo.Text = "Campo";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(203, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 16);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Busqueda";
             // 
             // BuscarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 494);
-            this.Controls.Add(this.btnaceptar);
+            this.ClientSize = new System.Drawing.Size(403, 494);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbcampo);
+            this.Controls.Add(this.btncrearcliente);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.btnclienteseleccionado);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtprimerapellido);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtprimernombre);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtcedula);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "BuscarClientes";
@@ -179,15 +175,14 @@
         #endregion
 		
 		private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtcedula;
-        private System.Windows.Forms.TextBox txtprimernombre;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtprimerapellido;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox btnminimizar;
         private System.Windows.Forms.PictureBox btncerrar;
-        private System.Windows.Forms.Button btnaceptar;
+        private System.Windows.Forms.Button btnclienteseleccionado;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btncrearcliente;
+        private System.Windows.Forms.Label lbcampo;
+        private System.Windows.Forms.Label label2;
     }
 }
