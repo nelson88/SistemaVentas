@@ -25,8 +25,11 @@ namespace SistemaVentas
 
         private void Producto_Load(object sender, EventArgs e)
         {
+            ListCategoria();
+            FiltroListCategoria();
             ObtenerProductos();
             dataGridView1.Columns["ProductoId"].Visible = false;
+            dataGridView1.Columns["ProductoCategoriaId"].Visible = false;
         }
 
         private void ObtenerProductos()
@@ -47,7 +50,7 @@ namespace SistemaVentas
 
         private void LimpiarTextBox()
         {
-            txtCodigo.Text = "";
+            ListCategoria();
             txtNombre.Text = "";
             txtDescripcion.Text = "";
             txtMonto.Text = "";
@@ -65,12 +68,22 @@ namespace SistemaVentas
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 Editar = true;
-                txtCodigo.Text = dataGridView1.CurrentRow.Cells["Codigo"].Value.ToString();
+                int categoriaid = 0;
+
+                //txtCodigo.Text = dataGridView1.CurrentRow.Cells["Codigo"].Value.ToString();
+                categoriaid = (int)dataGridView1.CurrentRow.Cells["ProductoCategoriaId"].Value;
+
                 txtNombre.Text = dataGridView1.CurrentRow.Cells["Nombre"].Value.ToString();
                 txtDescripcion.Text = dataGridView1.CurrentRow.Cells["Descripcion"].Value.ToString();
                 txtMonto.Text = dataGridView1.CurrentRow.Cells["Monto"].Value.ToString();
                 txtCantidad.Text = dataGridView1.CurrentRow.Cells["Cantidad"].Value.ToString();
                 productoId = dataGridView1.CurrentRow.Cells["ProductoId"].Value.ToString();
+
+                foreach (DataRowView Row in cmbCategoria .Items)
+                {
+                    if (Convert.ToInt32(Row.Row.ItemArray[0]) == categoriaid)
+                        cmbCategoria.SelectedItem = Row;
+                }
             }
             else
             {
@@ -91,6 +104,15 @@ namespace SistemaVentas
             }
         }
 
+        private void ListCategoria()
+        {
+            ProductoController con = new ProductoController();
+            cmbCategoria.DataSource = con.ObtnerCategoria();
+            cmbCategoria.DisplayMember = "Categoria";
+            cmbCategoria.ValueMember = "ProductoCategoriaId";
+        }
+
+
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
             bool sucess = false;
@@ -100,7 +122,11 @@ namespace SistemaVentas
             {
                 Producto producto = new Producto();
 
-                venta.producto.Codigo = Convert.ToString(txtCodigo.Text);
+                DataRowView drcategoria = cmbCategoria.SelectedItem as DataRowView;
+                int categoriaid = (int)drcategoria.Row.ItemArray[0];
+                
+                //venta.producto.Codigo = Convert.ToString(txtCodigo.Text);
+                venta.producto.ProductoCategoriaId = categoriaid;
                 venta.producto.Nombre = txtNombre.Text;
                 venta.producto.Descripcion = txtDescripcion.Text;
                 venta.producto.Monto = Convert.ToDecimal(txtMonto.Text);
@@ -140,14 +166,14 @@ namespace SistemaVentas
             int cantidad;
 
             string nombre = txtNombre.Text;
-            string descripcion = txtDescripcion.Text;
+            //string descripcion = txtDescripcion.Text;
             string monto = txtMonto.Text;
             string cantidadstr = txtCantidad.Text;
 
             
             bool cantidadvalido = Int32.TryParse(cantidadstr, out cantidad);
 
-            if(nombre != "" && descripcion != "" && monto != "" && cantidadvalido)
+            if(nombre != "" /*&& descripcion != ""*/ && monto != "" && cantidadvalido)
             {
                 success = true;
             }
@@ -189,6 +215,67 @@ namespace SistemaVentas
             {
                 e.Handled = true;
             }
+        }
+
+        private void cmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //ComboBox comboBox = (ComboBox)sender;
+            //DataRowView dr = comboBox.SelectedItem as DataRowView;
+            
+            //int i = (int)dr.Row.ItemArray[0];
+            //if (drdiasemana != null)
+            //{
+            //    diaid = (int)drdiasemana.Row.ItemArray[0];
+            //}
+
+            //foreach (DataRowView Row in cbdiasemana.Items)
+            //{
+            //    if (Convert.ToInt32(Row.Row.ItemArray[0]) == diaid)
+            //        cbdiasemana.SelectedItem = Row;
+            //}
+        }
+
+        private void cbfilterCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            DataRowView dr = comboBox.SelectedItem as DataRowView;
+
+            int i = (int)dr.Row.ItemArray[0];
+
+            if (i == 2)
+            {
+                ObtnerProductosByCategoria(i, "");
+                txtFiltroNombre.Enabled = true;
+            }
+            else if (i == 3)
+            {
+                ObtnerProductosByCategoria(i, "");
+                txtFiltroNombre.Enabled = true;
+            }
+            else if (i == 4)
+            {
+                ObtnerProductosByCategoria(i, "");
+                txtFiltroNombre.Enabled = true;
+            }
+            else {
+                ObtnerProductosByCategoria(i, "");
+                txtFiltroNombre.Enabled = false;
+            }
+
+        }
+
+        private void ObtnerProductosByCategoria(int ProductoCategoriaId, string nombre)
+        {
+            ProductoController con = new ProductoController();
+            dataGridView1.DataSource = con.ObtnerProductosByCategoria(ProductoCategoriaId, nombre);
+        }
+
+        private void FiltroListCategoria()
+        {
+            ProductoController con = new ProductoController();
+            cbfilterCategoria.DataSource = con.ObtnerCategoria();
+            cbfilterCategoria.DisplayMember = "Categoria";
+            cbfilterCategoria.ValueMember = "ProductoCategoriaId";
         }
     }
 }
