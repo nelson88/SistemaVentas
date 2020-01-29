@@ -35,11 +35,25 @@ namespace CapaNegocio
             return succes;
         }
 
+        public DataTable ObtnerProductosByCategoria(int ProductoCategoriaId, string nombre)
+        {
+            DataTable dt = new DataTable();
+            dt = data.ObtnerProductosByCategoria(ProductoCategoriaId, nombre);
+            return dt;
+        }
+
         public bool EliminarProducto(Guid productoId)
         {
             bool succes = true;
             data.EliminarProducto(productoId);
             return succes;
+        }
+
+        public DataTable ObtnerCategoria()
+        {
+            DataTable dt = new DataTable();
+            dt = data.ObtnerCategoria();
+            return dt;
         }
     }
 }
