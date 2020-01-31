@@ -160,6 +160,21 @@ namespace SistemaVentas
         //    }
         }
 
+        private void Facturacion_Load_1(object sender, EventArgs e)
+        {
+            ObtenerProductos();
+        }
+
+        private void ObtenerProductos()
+        {
+            ProductoController con = new ProductoController();
+            dataGridView1.DataSource = con.ObtenerProductos();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
         //public bool ProductosValidacion()
         //{
         //    bool success = false;
@@ -170,7 +185,7 @@ namespace SistemaVentas
         //    string monto = txtMonto.Text;
         //    string cantidadstr = txtCantidad.Text;
 
-            
+
         //    bool cantidadvalido = Int32.TryParse(cantidadstr, out cantidad);
 
         //    if(nombre != "" /*&& descripcion != ""*/ && monto != "" && cantidadvalido)
@@ -221,7 +236,7 @@ namespace SistemaVentas
         //{
         //    //ComboBox comboBox = (ComboBox)sender;
         //    //DataRowView dr = comboBox.SelectedItem as DataRowView;
-            
+
         //    //int i = (int)dr.Row.ItemArray[0];
         //    //if (drdiasemana != null)
         //    //{
