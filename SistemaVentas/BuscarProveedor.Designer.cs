@@ -55,6 +55,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(467, 32);
             this.panel1.TabIndex = 9;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // btncerrar
             // 
@@ -137,6 +138,8 @@
             this.btnproveedorseleccionado.TabIndex = 31;
             this.btnproveedorseleccionado.Text = "Agregar Proveedor Seleccionado";
             this.btnproveedorseleccionado.UseVisualStyleBackColor = true;
+            this.btnproveedorseleccionado.Click += new System.EventHandler(this.btnproveedorseleccionado_Click);
+            this.btnproveedorseleccionado.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnproveedorseleccionado_MouseDown);
             // 
             // txtprimerapellido
             // 

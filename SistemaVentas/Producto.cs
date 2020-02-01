@@ -17,7 +17,10 @@ namespace SistemaVentas
         ProductoController controller = new ProductoController();
         VentaModel venta = new VentaModel();
         private string productoId = null;
+        public string proveedorId;
         private bool Editar = false;
+
+
         public Producto()
         {
             InitializeComponent();

@@ -67,5 +67,25 @@ namespace SistemaVentas
             ProductoController productoc = new ProductoController();
             dataGridView1.DataSource = productoc.ObtenerProveedor();
         }
+
+        private void btnproveedorseleccionado_MouseDown(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void btnproveedorseleccionado_Click(object sender, EventArgs e)
+        {
+            Producto formProducto = Owner as Producto;
+
+            formProducto.txtproveedor.Text = dataGridView1.CurrentRow.Cells["Proveedor"].Value.ToString();
+            formProducto.proveedorId = dataGridView1.CurrentRow.Cells["ProveedorId"].Value.ToString();
+            this.Close();
+        }
     }
 }
