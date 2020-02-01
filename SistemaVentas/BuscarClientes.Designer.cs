@@ -38,6 +38,7 @@
             this.btncrearcliente = new System.Windows.Forms.Button();
             this.lbcampo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btneditar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btncerrar)).BeginInit();
@@ -47,7 +48,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 111);
+            this.dataGridView1.Location = new System.Drawing.Point(40, 111);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -57,7 +58,7 @@
             // 
             // txtprimerapellido
             // 
-            this.txtprimerapellido.Location = new System.Drawing.Point(206, 67);
+            this.txtprimerapellido.Location = new System.Drawing.Point(220, 67);
             this.txtprimerapellido.Name = "txtprimerapellido";
             this.txtprimerapellido.Size = new System.Drawing.Size(167, 20);
             this.txtprimerapellido.TabIndex = 6;
@@ -70,14 +71,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(403, 32);
+            this.panel1.Size = new System.Drawing.Size(467, 32);
             this.panel1.TabIndex = 7;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // btncerrar
             // 
             this.btncerrar.Image = global::SistemaVentas.Properties.Resources.icon_cerrar2;
-            this.btncerrar.Location = new System.Drawing.Point(372, 7);
+            this.btncerrar.Location = new System.Drawing.Point(435, 7);
             this.btncerrar.Name = "btncerrar";
             this.btncerrar.Size = new System.Drawing.Size(20, 20);
             this.btncerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -88,7 +89,7 @@
             // btnminimizar
             // 
             this.btnminimizar.Image = global::SistemaVentas.Properties.Resources.icon_minimizar;
-            this.btnminimizar.Location = new System.Drawing.Point(342, 7);
+            this.btnminimizar.Location = new System.Drawing.Point(405, 7);
             this.btnminimizar.Name = "btnminimizar";
             this.btnminimizar.Size = new System.Drawing.Size(20, 20);
             this.btnminimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -110,7 +111,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(32, 66);
+            this.comboBox1.Location = new System.Drawing.Point(46, 66);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 16;
@@ -118,18 +119,19 @@
             // btncrearcliente
             // 
             this.btncrearcliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btncrearcliente.Location = new System.Drawing.Point(258, 444);
+            this.btncrearcliente.Location = new System.Drawing.Point(245, 444);
             this.btncrearcliente.Name = "btncrearcliente";
-            this.btncrearcliente.Size = new System.Drawing.Size(134, 38);
+            this.btncrearcliente.Size = new System.Drawing.Size(104, 38);
             this.btncrearcliente.TabIndex = 17;
-            this.btncrearcliente.Text = "Crear Cliente";
+            this.btncrearcliente.Text = "Crear";
             this.btncrearcliente.UseVisualStyleBackColor = true;
+            this.btncrearcliente.Click += new System.EventHandler(this.btncrearcliente_Click);
             // 
             // lbcampo
             // 
             this.lbcampo.AutoSize = true;
             this.lbcampo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbcampo.Location = new System.Drawing.Point(30, 44);
+            this.lbcampo.Location = new System.Drawing.Point(44, 44);
             this.lbcampo.Name = "lbcampo";
             this.lbcampo.Size = new System.Drawing.Size(57, 16);
             this.lbcampo.TabIndex = 18;
@@ -139,17 +141,29 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(203, 44);
+            this.label2.Location = new System.Drawing.Point(217, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 16);
             this.label2.TabIndex = 19;
             this.label2.Text = "Busqueda";
             // 
+            // btneditar
+            // 
+            this.btneditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btneditar.Location = new System.Drawing.Point(356, 444);
+            this.btneditar.Name = "btneditar";
+            this.btneditar.Size = new System.Drawing.Size(104, 38);
+            this.btneditar.TabIndex = 20;
+            this.btneditar.Text = "Editar";
+            this.btneditar.UseVisualStyleBackColor = true;
+            this.btneditar.Click += new System.EventHandler(this.btneditar_Click);
+            // 
             // BuscarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 494);
+            this.ClientSize = new System.Drawing.Size(467, 494);
+            this.Controls.Add(this.btneditar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbcampo);
             this.Controls.Add(this.btncrearcliente);
@@ -184,5 +198,6 @@
         private System.Windows.Forms.Button btncrearcliente;
         private System.Windows.Forms.Label lbcampo;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btneditar;
     }
 }

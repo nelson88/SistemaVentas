@@ -32,7 +32,6 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.btnagregar = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -46,13 +45,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.cbmodopago = new System.Windows.Forms.ComboBox();
             this.rbcredito = new System.Windows.Forms.RadioButton();
             this.rbcontado = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.lbtotalcompra = new System.Windows.Forms.Label();
             this.lbdescuento = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtcliente = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -91,17 +91,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 3;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(123, 161);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 4;
-            this.comboBox1.DropDown += new System.EventHandler(this.comboBox1_DropDown);
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.comboBox1.Click += new System.EventHandler(this.comboBox1_Click);
             // 
             // comboBox3
             // 
@@ -227,13 +216,13 @@
             this.label8.TabIndex = 20;
             this.label8.Text = "REALIZAR LA COMPRA";
             // 
-            // comboBox4
+            // cbmodopago
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(947, 41);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 21;
+            this.cbmodopago.FormattingEnabled = true;
+            this.cbmodopago.Location = new System.Drawing.Point(947, 41);
+            this.cbmodopago.Name = "cbmodopago";
+            this.cbmodopago.Size = new System.Drawing.Size(121, 21);
+            this.cbmodopago.TabIndex = 21;
             // 
             // rbcredito
             // 
@@ -301,18 +290,28 @@
             this.label10.TabIndex = 26;
             this.label10.Text = "Descuento:";
             // 
+            // txtcliente
+            // 
+            this.txtcliente.Location = new System.Drawing.Point(123, 166);
+            this.txtcliente.Name = "txtcliente";
+            this.txtcliente.Size = new System.Drawing.Size(100, 20);
+            this.txtcliente.TabIndex = 28;
+            this.txtcliente.Click += new System.EventHandler(this.txtcliente_Click);
+            this.txtcliente.TextChanged += new System.EventHandler(this.txtcliente_TextChanged);
+            // 
             // Compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 612);
+            this.Controls.Add(this.txtcliente);
             this.Controls.Add(this.lbdescuento);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.lbtotalcompra);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.rbcontado);
             this.Controls.Add(this.rbcredito);
-            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.cbmodopago);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
@@ -326,7 +325,6 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnagregar);
             this.Controls.Add(this.dataGridView2);
@@ -348,7 +346,6 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button btnagregar;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
@@ -362,12 +359,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox cbmodopago;
         private System.Windows.Forms.RadioButton rbcredito;
         private System.Windows.Forms.RadioButton rbcontado;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lbtotalcompra;
         private System.Windows.Forms.Label lbdescuento;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtcliente;
     }
 }

@@ -21,6 +21,7 @@ namespace SistemaVentas
         private void Compra_Load(object sender, EventArgs e)
         {
             ObtenerProductos();
+            ListFrecuencia();
             dataGridView1.Columns["ProductoId"].Visible = false;
             dataGridView1.Columns["ProductoCategoriaId"].Visible = false;
         }
@@ -84,6 +85,28 @@ namespace SistemaVentas
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtcliente_TextChanged(object sender, EventArgs e)
+        {
+            BuscarClientes frm = new BuscarClientes();
+            AddOwnedForm(frm);
+            frm.Show();
+        }
+
+        private void ListFrecuencia()
+        {
+            CompraController con = new CompraController();
+            cbmodopago.DataSource = con.ObtnerFrecuencia();
+            cbmodopago.DisplayMember = "Nombre";
+            cbmodopago.ValueMember = "FrecuenciaId";
+        }
+
+        private void txtcliente_Click(object sender, EventArgs e)
+        {
+            BuscarClientes frm = new BuscarClientes();
+            AddOwnedForm(frm);
+            frm.Show(); 
         }
     }
 }

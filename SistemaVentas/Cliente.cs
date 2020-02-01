@@ -19,6 +19,7 @@ namespace SistemaVentas
         VentaModel venta = new VentaModel();
         private bool Editar = false;
         private string clienteId = null;
+        
         public Cliente()
         {
             InitializeComponent();

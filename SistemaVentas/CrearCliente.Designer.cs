@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtnombre = new System.Windows.Forms.TextBox();
             this.txtdireccion = new System.Windows.Forms.TextBox();
             this.txttelefono = new System.Windows.Forms.TextBox();
@@ -38,7 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btninsertar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btncancelar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +53,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 41);
             this.panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(81, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(122, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Crear Cliente";
             // 
             // txtnombre
             // 
@@ -123,29 +134,32 @@
             // 
             // btninsertar
             // 
-            this.btninsertar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btninsertar.Location = new System.Drawing.Point(85, 273);
+            this.btninsertar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btninsertar.Location = new System.Drawing.Point(46, 276);
             this.btninsertar.Name = "btninsertar";
-            this.btninsertar.Size = new System.Drawing.Size(108, 36);
+            this.btninsertar.Size = new System.Drawing.Size(83, 36);
             this.btninsertar.TabIndex = 9;
-            this.btninsertar.Text = "Crear";
+            this.btninsertar.Text = "Aceptar";
             this.btninsertar.UseVisualStyleBackColor = true;
+            this.btninsertar.Click += new System.EventHandler(this.btninsertar_Click);
             // 
-            // label1
+            // btncancelar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(81, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Crear Cliente";
+            this.btncancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncancelar.Location = new System.Drawing.Point(164, 276);
+            this.btncancelar.Name = "btncancelar";
+            this.btncancelar.Size = new System.Drawing.Size(86, 36);
+            this.btncancelar.TabIndex = 10;
+            this.btncancelar.Text = "Cancelar";
+            this.btncancelar.UseVisualStyleBackColor = true;
+            this.btncancelar.Click += new System.EventHandler(this.btncancelar_Click);
             // 
-            // VentanaCliente
+            // CrearCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 354);
+            this.Controls.Add(this.btncancelar);
             this.Controls.Add(this.btninsertar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -157,8 +171,9 @@
             this.Controls.Add(this.txtnombre);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "VentanaCliente";
+            this.Name = "CrearCliente";
             this.Text = "VentanaCliente";
+            this.Load += new System.EventHandler(this.CrearCliente_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -179,5 +194,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btninsertar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btncancelar;
     }
 }

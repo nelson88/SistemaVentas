@@ -32,7 +32,7 @@ namespace SistemaVentas
             dataGridView1.Columns["ClienteId"].Visible = false;
         }
 
-        private void ListClientes()
+        public void ListClientes()
         {
             ClienteController con = new ClienteController();
             dataGridView1.DataSource = con.mostrarCliente();
@@ -102,6 +102,27 @@ namespace SistemaVentas
             }
 
             isRecibo = true;
+        }
+
+        private void btncrearcliente_Click(object sender, EventArgs e)
+        {
+            CrearCliente frm = new CrearCliente();
+            
+            frm.Show();
+        }
+
+        private void btneditar_Click(object sender, EventArgs e)
+        {
+            CrearCliente cc = new CrearCliente();
+            
+            cc.clienteId = dataGridView1.CurrentRow.Cells["ClienteId"].Value.ToString();
+            cc.nombre = dataGridView1.CurrentRow.Cells["PrimerNombre"].Value.ToString();
+            cc.direccion = dataGridView1.CurrentRow.Cells["Telefono"].Value.ToString();
+            cc.telefono = dataGridView1.CurrentRow.Cells["Direccion"].Value.ToString();
+            cc.cedula = dataGridView1.CurrentRow.Cells["Cedula"].Value.ToString();
+            cc.isedit = true;
+
+            cc.Show();
         }
     }
 }
