@@ -69,6 +69,18 @@ namespace CapaEntidad
 
     #region Client_Produc
 
+    #region Proveedor
+    public class ProveedorModel
+    {
+        public Guid ProveedorId { get; set; } 
+        public string Proveedor { get; set; }
+        public string Correo { get; set; }
+        public string Contacto { get; set; }
+        public string Telefono1 { get; set; }
+        public string Telefono2 { get; set; }
+    }
+    #endregion
+
     public class Client_Produc
     {
        public Guid ClientProducId { get; set; }

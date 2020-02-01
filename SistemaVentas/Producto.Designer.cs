@@ -33,26 +33,28 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.cmbCategoria = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblinsrtedit = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.txtCantidad = new System.Windows.Forms.TextBox();
-            this.txtMonto = new System.Windows.Forms.TextBox();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.txtObservacion = new System.Windows.Forms.TextBox();
+            this.txtArticulo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtFiltroNombre = new System.Windows.Forms.TextBox();
+            this.cbfilterCategoria = new System.Windows.Forms.ComboBox();
             this.lbltitulo = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cbfilterCategoria = new System.Windows.Forms.ComboBox();
-            this.txtFiltroNombre = new System.Windows.Forms.TextBox();
+            this.txtproveedor = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -61,14 +63,16 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.txtproveedor);
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.cmbCategoria);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lblinsrtedit);
             this.panel1.Controls.Add(this.btnGuardar);
             this.panel1.Controls.Add(this.txtCantidad);
-            this.panel1.Controls.Add(this.txtMonto);
-            this.panel1.Controls.Add(this.txtDescripcion);
-            this.panel1.Controls.Add(this.txtNombre);
+            this.panel1.Controls.Add(this.txtPrecio);
+            this.panel1.Controls.Add(this.txtObservacion);
+            this.panel1.Controls.Add(this.txtArticulo);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
@@ -78,6 +82,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(300, 455);
             this.panel1.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(27, 104);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 15);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Proveedor:";
             // 
             // cmbCategoria
             // 
@@ -111,7 +125,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(51, 344);
+            this.btnGuardar.Location = new System.Drawing.Point(51, 388);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(209, 33);
             this.btnGuardar.TabIndex = 21;
@@ -121,40 +135,40 @@
             // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(114, 180);
+            this.txtCantidad.Location = new System.Drawing.Point(114, 232);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(174, 20);
             this.txtCantidad.TabIndex = 19;
             this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
-            // txtMonto
+            // txtPrecio
             // 
-            this.txtMonto.Location = new System.Drawing.Point(114, 141);
-            this.txtMonto.Name = "txtMonto";
-            this.txtMonto.Size = new System.Drawing.Size(174, 20);
-            this.txtMonto.TabIndex = 18;
-            this.txtMonto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonto_KeyPress);
+            this.txtPrecio.Location = new System.Drawing.Point(114, 190);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(174, 20);
+            this.txtPrecio.TabIndex = 18;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonto_KeyPress);
             // 
-            // txtDescripcion
+            // txtObservacion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(114, 220);
-            this.txtDescripcion.Multiline = true;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(174, 80);
-            this.txtDescripcion.TabIndex = 20;
+            this.txtObservacion.Location = new System.Drawing.Point(114, 277);
+            this.txtObservacion.Multiline = true;
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.Size = new System.Drawing.Size(174, 80);
+            this.txtObservacion.TabIndex = 20;
             // 
-            // txtNombre
+            // txtArticulo
             // 
-            this.txtNombre.Location = new System.Drawing.Point(114, 101);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(174, 20);
-            this.txtNombre.TabIndex = 17;
+            this.txtArticulo.Location = new System.Drawing.Point(114, 147);
+            this.txtArticulo.Name = "txtArticulo";
+            this.txtArticulo.Size = new System.Drawing.Size(174, 20);
+            this.txtArticulo.TabIndex = 17;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(37, 183);
+            this.label5.Location = new System.Drawing.Point(37, 235);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 15);
             this.label5.TabIndex = 15;
@@ -164,17 +178,17 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(37, 144);
+            this.label4.Location = new System.Drawing.Point(37, 193);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 15);
+            this.label4.Size = new System.Drawing.Size(45, 15);
             this.label4.TabIndex = 14;
-            this.label4.Text = "Valor:";
+            this.label4.Text = "Precio:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(17, 220);
+            this.label3.Location = new System.Drawing.Point(17, 277);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 15);
             this.label3.TabIndex = 13;
@@ -184,11 +198,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(37, 104);
+            this.label2.Location = new System.Drawing.Point(37, 150);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 15);
+            this.label2.Size = new System.Drawing.Size(52, 15);
             this.label2.TabIndex = 12;
-            this.label2.Text = "Nombre:";
+            this.label2.Text = "Articulo:";
             // 
             // panel2
             // 
@@ -204,6 +218,23 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(742, 455);
             this.panel2.TabIndex = 16;
+            // 
+            // txtFiltroNombre
+            // 
+            this.txtFiltroNombre.Enabled = false;
+            this.txtFiltroNombre.Location = new System.Drawing.Point(210, 46);
+            this.txtFiltroNombre.Name = "txtFiltroNombre";
+            this.txtFiltroNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtFiltroNombre.TabIndex = 28;
+            // 
+            // cbfilterCategoria
+            // 
+            this.cbfilterCategoria.FormattingEnabled = true;
+            this.cbfilterCategoria.Location = new System.Drawing.Point(13, 46);
+            this.cbfilterCategoria.Name = "cbfilterCategoria";
+            this.cbfilterCategoria.Size = new System.Drawing.Size(180, 21);
+            this.cbfilterCategoria.TabIndex = 27;
+            this.cbfilterCategoria.SelectedIndexChanged += new System.EventHandler(this.cbfilterCategoria_SelectedIndexChanged);
             // 
             // lbltitulo
             // 
@@ -279,22 +310,13 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // cbfilterCategoria
+            // txtproveedor
             // 
-            this.cbfilterCategoria.FormattingEnabled = true;
-            this.cbfilterCategoria.Location = new System.Drawing.Point(13, 46);
-            this.cbfilterCategoria.Name = "cbfilterCategoria";
-            this.cbfilterCategoria.Size = new System.Drawing.Size(180, 21);
-            this.cbfilterCategoria.TabIndex = 27;
-            this.cbfilterCategoria.SelectedIndexChanged += new System.EventHandler(this.cbfilterCategoria_SelectedIndexChanged);
-            // 
-            // txtFiltroNombre
-            // 
-            this.txtFiltroNombre.Enabled = false;
-            this.txtFiltroNombre.Location = new System.Drawing.Point(210, 46);
-            this.txtFiltroNombre.Name = "txtFiltroNombre";
-            this.txtFiltroNombre.Size = new System.Drawing.Size(100, 20);
-            this.txtFiltroNombre.TabIndex = 28;
+            this.txtproveedor.Location = new System.Drawing.Point(114, 104);
+            this.txtproveedor.Name = "txtproveedor";
+            this.txtproveedor.Size = new System.Drawing.Size(174, 20);
+            this.txtproveedor.TabIndex = 26;
+            this.txtproveedor.Click += new System.EventHandler(this.txtproveedor_Click);
             // 
             // Producto
             // 
@@ -321,9 +343,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.TextBox txtCantidad;
-        private System.Windows.Forms.TextBox txtMonto;
-        private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.TextBox txtObservacion;
+        private System.Windows.Forms.TextBox txtArticulo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -339,5 +361,7 @@
         private System.Windows.Forms.ComboBox cmbCategoria;
         private System.Windows.Forms.TextBox txtFiltroNombre;
         private System.Windows.Forms.ComboBox cbfilterCategoria;
+        private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.TextBox txtproveedor;
     }
 }

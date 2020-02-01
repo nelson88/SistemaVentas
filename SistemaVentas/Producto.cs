@@ -51,9 +51,9 @@ namespace SistemaVentas
         private void LimpiarTextBox()
         {
             ListCategoria();
-            txtNombre.Text = "";
-            txtDescripcion.Text = "";
-            txtMonto.Text = "";
+            txtArticulo.Text = "";
+            txtObservacion.Text = "";
+            txtPrecio.Text = "";
             txtCantidad.Text = "";
         }
 
@@ -73,9 +73,9 @@ namespace SistemaVentas
                 //txtCodigo.Text = dataGridView1.CurrentRow.Cells["Codigo"].Value.ToString();
                 categoriaid = (int)dataGridView1.CurrentRow.Cells["ProductoCategoriaId"].Value;
 
-                txtNombre.Text = dataGridView1.CurrentRow.Cells["Nombre"].Value.ToString();
-                txtDescripcion.Text = dataGridView1.CurrentRow.Cells["Descripcion"].Value.ToString();
-                txtMonto.Text = dataGridView1.CurrentRow.Cells["Monto"].Value.ToString();
+                txtArticulo.Text = dataGridView1.CurrentRow.Cells["Nombre"].Value.ToString();
+                txtObservacion.Text = dataGridView1.CurrentRow.Cells["Descripcion"].Value.ToString();
+                txtPrecio.Text = dataGridView1.CurrentRow.Cells["Monto"].Value.ToString();
                 txtCantidad.Text = dataGridView1.CurrentRow.Cells["Cantidad"].Value.ToString();
                 productoId = dataGridView1.CurrentRow.Cells["ProductoId"].Value.ToString();
 
@@ -127,9 +127,9 @@ namespace SistemaVentas
                 
                 //venta.producto.Codigo = Convert.ToString(txtCodigo.Text);
                 venta.producto.ProductoCategoriaId = categoriaid;
-                venta.producto.Nombre = txtNombre.Text;
-                venta.producto.Descripcion = txtDescripcion.Text;
-                venta.producto.Monto = Convert.ToDecimal(txtMonto.Text);
+                venta.producto.Nombre = txtArticulo.Text;
+                venta.producto.Descripcion = txtObservacion.Text;
+                venta.producto.Monto = Convert.ToDecimal(txtPrecio.Text);
                 venta.producto.Cantidad = Convert.ToInt32(txtCantidad.Text);
 
                 if (Editar == false)
@@ -165,9 +165,9 @@ namespace SistemaVentas
             bool success = false;
             int cantidad;
 
-            string nombre = txtNombre.Text;
+            string nombre = txtArticulo.Text;
             //string descripcion = txtDescripcion.Text;
-            string monto = txtMonto.Text;
+            string monto = txtPrecio.Text;
             string cantidadstr = txtCantidad.Text;
 
             
@@ -276,6 +276,13 @@ namespace SistemaVentas
             cbfilterCategoria.DataSource = con.ObtnerCategoria();
             cbfilterCategoria.DisplayMember = "Categoria";
             cbfilterCategoria.ValueMember = "ProductoCategoriaId";
+        }
+
+        private void txtproveedor_Click(object sender, EventArgs e)
+        {
+            BuscarProveedor frm = new BuscarProveedor();
+            AddOwnedForm(frm);
+            frm.Show();
         }
     }
 }

@@ -120,6 +120,91 @@ namespace CapaDatos
 
         }
 
+        public DataTable ObtenerProveedor()
+        {
+            command.Connection = AbrirConexion();
+            command.CommandText = @"SELECT p.ProveedorId, p.Proveedor, p.Contacto, p.Correo, p.Telefono1, p.Telefono2 FROM dbo.Proveedor p";
+            leer = command.ExecuteReader();
+            dt.Load(leer);
+            leer.Close();
+            CerrarConexion();
+            return dt;
+        }
+
+        public bool InsertarProveedor(ProveedorModel vendedorModel)
+        {
+            bool succes = true;
+
+            using (var cn = GetConnection())
+            {
+                cn.Open();
+                using (var comm = new SqlCommand())
+                {
+                    comm.Connection = cn;
+                    comm.CommandText = @"INSERT INTO dbo.Proveedor(ProveedorId, Proveedor, Contacto, Correo, Telefono1, Telefono2, Creado, Modificado)
+                                         VALUES(NEWID(), @Proveedor, @Contacto, @Correo, @Telefono1, @Telefono2, GETDATE(), GETDATE())";
+                    try
+                    {
+                        comm.Parameters.AddWithValue("@Proveedor", vendedorModel.Proveedor);
+                        comm.Parameters.AddWithValue("@Contacto", vendedorModel.Contacto);
+                        comm.Parameters.AddWithValue("@Correo", vendedorModel.Correo);
+                        comm.Parameters.AddWithValue("@Telefono1", vendedorModel.Telefono1);
+                        comm.Parameters.AddWithValue("@Telefono2", vendedorModel.Telefono2);
+
+                        comm.CommandType = CommandType.Text;
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        succes = false;
+                    }
+                }
+            }
+
+            return succes;
+
+        }
+
+        public bool ActualizarProveedor(ProveedorModel vendedorModel)
+        {
+            bool succes = true;
+
+            using (var cn = GetConnection())
+            {
+                cn.Open();
+                using (var comm = new SqlCommand())
+                {
+                    comm.Connection = cn;
+                    comm.CommandText = @"UPDATE dbo.Proveedor
+                                         SET Proveedor =  @Proveedor,
+                                             Contacto =   @Contacto,
+                                         	 Correo =     @Correo,
+                                         	 Telefono1 =  @Telefono1,
+                                         	 Telefono2 =  @Telefono2,
+                                           	 Modificado = GETDATE()
+                                         WHERE ProveedorId = @ProveedorId";
+                    try
+                    {
+                        comm.Parameters.AddWithValue("@Proveedor", vendedorModel.Proveedor);
+                        comm.Parameters.AddWithValue("@Contacto", vendedorModel.Contacto);
+                        comm.Parameters.AddWithValue("@Correo", vendedorModel.Correo);
+                        comm.Parameters.AddWithValue("@Telefono1", vendedorModel.Telefono1);
+                        comm.Parameters.AddWithValue("@Telefono2", vendedorModel.Telefono2);
+                        comm.Parameters.AddWithValue("@ProveedorId", vendedorModel.ProveedorId);
+
+                        comm.CommandType = CommandType.Text;
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        succes = false;
+                    }
+                }
+            }
+
+            return succes;
+        }
+
         public bool InsertarProducto(Producto producto)
         {
             bool succes = true;

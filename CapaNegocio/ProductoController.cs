@@ -55,5 +55,26 @@ namespace CapaNegocio
             dt = data.ObtnerCategoria();
             return dt;
         }
+
+        public DataTable ObtenerProveedor()
+        {
+            DataTable dt = new DataTable();
+            dt = data.ObtenerProveedor();
+            return dt;
+        }
+
+        public bool InsertarProveedor(ProveedorModel proveedorModel)
+        {
+            bool succes = true;
+            succes = data.InsertarProveedor(proveedorModel);
+            return succes;
+        }
+
+        public bool ActualizarProveedor(ProveedorModel proveedorModel)
+        {
+            bool succes = true;
+            data.ActualizarProveedor(proveedorModel);
+            return succes;
+        }
     }
 }
