@@ -32,7 +32,6 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.btnagregar = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnguardar = new System.Windows.Forms.Button();
@@ -53,6 +52,7 @@
             this.lbdescuento = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtcliente = new System.Windows.Forms.TextBox();
+            this.txtvendedor = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -89,16 +89,8 @@
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(123, 119);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(135, 20);
             this.dateTimePicker1.TabIndex = 3;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(667, 41);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 6;
             // 
             // textBox1
             // 
@@ -294,16 +286,25 @@
             // 
             this.txtcliente.Location = new System.Drawing.Point(123, 166);
             this.txtcliente.Name = "txtcliente";
-            this.txtcliente.Size = new System.Drawing.Size(100, 20);
+            this.txtcliente.Size = new System.Drawing.Size(135, 20);
             this.txtcliente.TabIndex = 28;
             this.txtcliente.Click += new System.EventHandler(this.txtcliente_Click);
             this.txtcliente.TextChanged += new System.EventHandler(this.txtcliente_TextChanged);
+            // 
+            // txtvendedor
+            // 
+            this.txtvendedor.Location = new System.Drawing.Point(667, 41);
+            this.txtvendedor.Name = "txtvendedor";
+            this.txtvendedor.Size = new System.Drawing.Size(121, 20);
+            this.txtvendedor.TabIndex = 29;
+            this.txtvendedor.Click += new System.EventHandler(this.txtvendedor_Click);
             // 
             // Compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 612);
+            this.Controls.Add(this.txtvendedor);
             this.Controls.Add(this.txtcliente);
             this.Controls.Add(this.lbdescuento);
             this.Controls.Add(this.label10);
@@ -324,7 +325,6 @@
             this.Controls.Add(this.btnguardar);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnagregar);
             this.Controls.Add(this.dataGridView2);
@@ -346,7 +346,6 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button btnagregar;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btnguardar;
@@ -367,5 +366,6 @@
         private System.Windows.Forms.Label lbdescuento;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtcliente;
+        private System.Windows.Forms.TextBox txtvendedor;
     }
 }

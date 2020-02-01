@@ -108,5 +108,12 @@ namespace SistemaVentas
             AddOwnedForm(frm);
             frm.Show(); 
         }
+
+        private void txtvendedor_Click(object sender, EventArgs e)
+        {
+            BuscarVendedor frm = new BuscarVendedor();
+            AddOwnedForm(frm);
+            frm.Show();
+        }
     }
 }

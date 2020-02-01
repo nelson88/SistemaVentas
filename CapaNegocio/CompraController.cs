@@ -62,5 +62,28 @@ namespace CapaNegocio
             return succes;
         }
 
+        #region vendedor
+        public DataTable MostrarVendedores()
+        {
+            DataTable dt = new DataTable();
+            dt = data.MostrarVendedores();
+            return dt;
+        }
+
+        public bool InsertarVendedor(VendedorModel vendedorModel)
+        {
+            bool succes = true;
+            succes = data.InsertarVendedor(vendedorModel);
+            return succes;
+        }
+
+        public bool ActualizarVendedor(VendedorModel vendedorModel)
+        {
+            bool succes = true;
+            data.ActualizarVendedor(vendedorModel);
+            return succes;
+        }
+        #endregion
+
     }
 }

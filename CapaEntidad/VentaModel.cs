@@ -53,6 +53,20 @@ namespace CapaEntidad
        public DateTime Modificado { get; set; }
     }
 
+    #region Vendedor
+
+    public class VendedorModel
+    {
+        public Guid VendedorId { get; set; }
+        public string Codigo { get; set; }
+        public string vendedor { get; set; }
+        public string Direccion { get; set; }
+        public string Telefono { get; set; }
+        public string Cedula { get; set; }
+    }
+
+    #endregion
+
     #region Client_Produc
 
     public class Client_Produc

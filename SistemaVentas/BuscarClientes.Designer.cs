@@ -31,14 +31,14 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtprimerapellido = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btncerrar = new System.Windows.Forms.PictureBox();
-            this.btnminimizar = new System.Windows.Forms.PictureBox();
             this.btnclienteseleccionado = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btncrearcliente = new System.Windows.Forms.Button();
             this.lbcampo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btneditar = new System.Windows.Forms.Button();
+            this.btncerrar = new System.Windows.Forms.PictureBox();
+            this.btnminimizar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btncerrar)).BeginInit();
@@ -73,29 +73,8 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(467, 32);
             this.panel1.TabIndex = 7;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            // 
-            // btncerrar
-            // 
-            this.btncerrar.Image = global::SistemaVentas.Properties.Resources.icon_cerrar2;
-            this.btncerrar.Location = new System.Drawing.Point(435, 7);
-            this.btncerrar.Name = "btncerrar";
-            this.btncerrar.Size = new System.Drawing.Size(20, 20);
-            this.btncerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btncerrar.TabIndex = 9;
-            this.btncerrar.TabStop = false;
-            this.btncerrar.Click += new System.EventHandler(this.btncerrar_Click);
-            // 
-            // btnminimizar
-            // 
-            this.btnminimizar.Image = global::SistemaVentas.Properties.Resources.icon_minimizar;
-            this.btnminimizar.Location = new System.Drawing.Point(405, 7);
-            this.btnminimizar.Name = "btnminimizar";
-            this.btnminimizar.Size = new System.Drawing.Size(20, 20);
-            this.btnminimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnminimizar.TabIndex = 8;
-            this.btnminimizar.TabStop = false;
-            this.btnminimizar.Click += new System.EventHandler(this.btnminimizar_Click);
             // 
             // btnclienteseleccionado
             // 
@@ -157,6 +136,28 @@
             this.btneditar.Text = "Editar";
             this.btneditar.UseVisualStyleBackColor = true;
             this.btneditar.Click += new System.EventHandler(this.btneditar_Click);
+            // 
+            // btncerrar
+            // 
+            this.btncerrar.Image = global::SistemaVentas.Properties.Resources.icon_cerrar2;
+            this.btncerrar.Location = new System.Drawing.Point(435, 7);
+            this.btncerrar.Name = "btncerrar";
+            this.btncerrar.Size = new System.Drawing.Size(20, 20);
+            this.btncerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btncerrar.TabIndex = 9;
+            this.btncerrar.TabStop = false;
+            this.btncerrar.Click += new System.EventHandler(this.btncerrar_Click);
+            // 
+            // btnminimizar
+            // 
+            this.btnminimizar.Image = global::SistemaVentas.Properties.Resources.icon_minimizar;
+            this.btnminimizar.Location = new System.Drawing.Point(405, 7);
+            this.btnminimizar.Name = "btnminimizar";
+            this.btnminimizar.Size = new System.Drawing.Size(20, 20);
+            this.btnminimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnminimizar.TabIndex = 8;
+            this.btnminimizar.TabStop = false;
+            this.btnminimizar.Click += new System.EventHandler(this.btnminimizar_Click);
             // 
             // BuscarClientes
             // 

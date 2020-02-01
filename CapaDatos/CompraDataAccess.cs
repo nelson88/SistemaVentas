@@ -227,5 +227,95 @@ namespace CapaDatos
 
             return succes;
         }
+
+        #region vendedor
+
+        public DataTable MostrarVendedores()
+        {
+            DataTable dt = new DataTable();
+            SqlCommand command = new SqlCommand();
+            SqlDataReader leer;
+
+            command.Connection = AbrirConexion();
+            command.CommandText = "SELECT VendedorId, Vendedor, Codigo, Direccion, Telefono, Cedula FROM dbo.Vendedor v";
+            leer = command.ExecuteReader();
+            dt.Load(leer);
+            CerrarConexion();
+            return dt;
+
+        }
+
+        public bool InsertarVendedor(VendedorModel vendedorModel)
+        {
+            bool succes = true;
+
+            using (var cn = GetConnection())
+            {
+                cn.Open();
+                using (var comm = new SqlCommand())
+                {
+                    comm.Connection = cn;
+                    comm.CommandText = @"INSERT INTO dbo.Vendedor(VendedorId, Codigo, Vendedor, Direccion, Telefono, Cedula, Creado, Modificado)
+                                         VALUES(NEWID(), '', @vendedor, @direccion, @telefono, @cedula, GETDATE(), GETDATE())";
+                    try
+                    {
+                        comm.Parameters.AddWithValue("@vendedor", vendedorModel.vendedor);
+                        comm.Parameters.AddWithValue("@Direccion", vendedorModel.Direccion);
+                        comm.Parameters.AddWithValue("@Telefono", vendedorModel.Telefono);
+                        comm.Parameters.AddWithValue("@Cedula", vendedorModel.Cedula);
+
+                        comm.CommandType = CommandType.Text;
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        succes = false;
+                    }
+                }
+            }
+
+            return succes;
+
+        }
+
+        public bool ActualizarVendedor(VendedorModel vendedorModel)
+        {
+            bool succes = true;
+
+            using (var cn = GetConnection())
+            {
+                cn.Open();
+                using (var comm = new SqlCommand())
+                {
+                    comm.Connection = cn;
+                    comm.CommandText = @"UPDATE dbo.Vendedor
+                                         SET Vendedor = @vendedor,
+                                         	 Direccion = @direccion,
+                                         	 Telefono = @telefono,
+                                         	 Cedula = @cedula,
+                                         	 Modificado = GETDATE()
+                                         WHERE VendedorId = @vendedorId";
+                    try
+                    {
+                        comm.Parameters.AddWithValue("@vendedor", vendedorModel.vendedor);
+                        comm.Parameters.AddWithValue("@direccion", vendedorModel.Direccion);
+                        comm.Parameters.AddWithValue("@telefono", vendedorModel.Telefono);
+                        comm.Parameters.AddWithValue("@cedula", vendedorModel.Cedula);
+                        comm.Parameters.AddWithValue("@vendedorId", vendedorModel.VendedorId);
+
+                        comm.CommandType = CommandType.Text;
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        succes = false;
+                    }
+                }
+            }
+
+            return succes;
+        }
+
+        #endregion
     }
 }

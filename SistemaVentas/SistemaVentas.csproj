@@ -70,6 +70,12 @@
     <Compile Include="BuscarProducto.Designer.cs">
       <DependentUpon>BuscarProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="BuscarVendedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscarVendedor.Designer.cs">
+      <DependentUpon>BuscarVendedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,12 @@
     </Compile>
     <Compile Include="ContenidoInicial.Designer.cs">
       <DependentUpon>ContenidoInicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrearVendedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearVendedor.Designer.cs">
+      <DependentUpon>CrearVendedor.cs</DependentUpon>
     </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
@@ -138,6 +150,9 @@
     <EmbeddedResource Include="BuscarProducto.resx">
       <DependentUpon>BuscarProducto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BuscarVendedor.resx">
+      <DependentUpon>BuscarVendedor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Cliente.resx">
       <DependentUpon>Cliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ContenidoInicial.resx">
       <DependentUpon>ContenidoInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrearVendedor.resx">
+      <DependentUpon>CrearVendedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
