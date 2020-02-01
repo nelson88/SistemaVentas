@@ -33,6 +33,7 @@ namespace SistemaVentas
             ObtenerProductos();
             dataGridView1.Columns["ProductoId"].Visible = false;
             dataGridView1.Columns["ProductoCategoriaId"].Visible = false;
+            dataGridView1.Columns["ProveedorId"].Visible = false;
         }
 
         private void ObtenerProductos()
@@ -54,6 +55,8 @@ namespace SistemaVentas
         private void LimpiarTextBox()
         {
             ListCategoria();
+            txtproveedor.Text = "";
+            proveedorId = "";
             txtArticulo.Text = "";
             txtObservacion.Text = "";
             txtPrecio.Text = "";
@@ -75,10 +78,11 @@ namespace SistemaVentas
 
                 //txtCodigo.Text = dataGridView1.CurrentRow.Cells["Codigo"].Value.ToString();
                 categoriaid = (int)dataGridView1.CurrentRow.Cells["ProductoCategoriaId"].Value;
-
-                txtArticulo.Text = dataGridView1.CurrentRow.Cells["Nombre"].Value.ToString();
+                proveedorId = dataGridView1.CurrentRow.Cells["ProveedorId"].Value.ToString();
+                txtproveedor.Text = dataGridView1.CurrentRow.Cells["Proveedor"].Value.ToString();
+                txtArticulo.Text = dataGridView1.CurrentRow.Cells["Articulo"].Value.ToString();
                 txtObservacion.Text = dataGridView1.CurrentRow.Cells["Descripcion"].Value.ToString();
-                txtPrecio.Text = dataGridView1.CurrentRow.Cells["Monto"].Value.ToString();
+                txtPrecio.Text = dataGridView1.CurrentRow.Cells["Precio"].Value.ToString();
                 txtCantidad.Text = dataGridView1.CurrentRow.Cells["Cantidad"].Value.ToString();
                 productoId = dataGridView1.CurrentRow.Cells["ProductoId"].Value.ToString();
 
@@ -130,6 +134,7 @@ namespace SistemaVentas
                 
                 //venta.producto.Codigo = Convert.ToString(txtCodigo.Text);
                 venta.producto.ProductoCategoriaId = categoriaid;
+                venta.producto.ProveedorId = proveedorId;
                 venta.producto.Nombre = txtArticulo.Text;
                 venta.producto.Descripcion = txtObservacion.Text;
                 venta.producto.Monto = Convert.ToDecimal(txtPrecio.Text);

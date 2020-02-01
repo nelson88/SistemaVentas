@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtproveedor = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbCategoria = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,7 +55,6 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.txtproveedor = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -82,6 +82,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(300, 455);
             this.panel1.TabIndex = 15;
+            // 
+            // txtproveedor
+            // 
+            this.txtproveedor.Location = new System.Drawing.Point(114, 104);
+            this.txtproveedor.Name = "txtproveedor";
+            this.txtproveedor.Size = new System.Drawing.Size(174, 20);
+            this.txtproveedor.TabIndex = 26;
+            this.txtproveedor.Click += new System.EventHandler(this.txtproveedor_Click);
             // 
             // label6
             // 
@@ -309,14 +317,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // txtproveedor
-            // 
-            this.txtproveedor.Location = new System.Drawing.Point(114, 104);
-            this.txtproveedor.Name = "txtproveedor";
-            this.txtproveedor.Size = new System.Drawing.Size(174, 20);
-            this.txtproveedor.TabIndex = 26;
-            this.txtproveedor.Click += new System.EventHandler(this.txtproveedor_Click);
             // 
             // Producto
             // 

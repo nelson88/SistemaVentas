@@ -113,7 +113,7 @@
             // btncancelar
             // 
             this.btncancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btncancelar.Location = new System.Drawing.Point(777, 199);
+            this.btncancelar.Location = new System.Drawing.Point(777, 200);
             this.btncancelar.Name = "btncancelar";
             this.btncancelar.Size = new System.Drawing.Size(131, 40);
             this.btncancelar.TabIndex = 11;
@@ -290,6 +290,7 @@
             this.txtvendedor.Size = new System.Drawing.Size(121, 20);
             this.txtvendedor.TabIndex = 29;
             this.txtvendedor.Click += new System.EventHandler(this.txtvendedor_Click);
+            this.txtvendedor.TextChanged += new System.EventHandler(this.txtvendedor_TextChanged);
             // 
             // txtobservaciones
             // 

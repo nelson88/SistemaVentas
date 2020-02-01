@@ -112,5 +112,10 @@ namespace SistemaVentas
             AddOwnedForm(frm);
             frm.Show();
         }
+
+        private void txtvendedor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

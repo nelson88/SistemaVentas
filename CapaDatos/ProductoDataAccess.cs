@@ -17,10 +17,11 @@ namespace CapaDatos
         public DataTable ObtnerProductos()
         {
             command.Connection = AbrirConexion();
-            command.CommandText = @"SELECT p.ProductoId, pc.ProductoCategoriaId, 'BCM-'+p.Codigo Codigo, 
-                                           pc.Categoria, p.Articulo, p.Descripcion, p.Precio
+            command.CommandText = @"SELECT p.ProductoId, pc.ProductoCategoriaId, p.ProveedorId, pr.Proveedor, 'BCM-'+p.Codigo Codigo, 
+                                           pc.Categoria, p.Articulo, p.Descripcion, p.Precio, p.Cantidad
                                     FROM dbo.Producto p
-                                    INNER JOIN dbo.ProductoCategoria pc ON pc.ProductoCategoriaId = p.ProductoCategoriaId";
+                                    INNER JOIN dbo.ProductoCategoria pc ON pc.ProductoCategoriaId = p.ProductoCategoriaId
+                                    INNER JOIN dbo.Proveedor pr ON pr.ProveedorId = p.ProveedorId";
             leer = command.ExecuteReader();
             dt.Load(leer);
             CerrarConexion();
@@ -34,17 +35,20 @@ namespace CapaDatos
             command.CommandText = @"
                                     IF @ProductoCategoriaId <> 1
                                     BEGIN
-                                        SELECT p.ProductoId, pc.ProductoCategoriaId, 'BMC-'+p.Codigo Codigo, pc.Categoria, p.Nombre, p.Cantidad, p.Descripcion, p.Monto, p.Modificado
+                                        SELECT p.ProductoId, pc.ProductoCategoriaId, p.ProveedorId, pr.Proveedor, 'BMC-'+p.Codigo Codigo, pc.Categoria, p.Articulo, p.Cantidad, p.Descripcion, p.Precio, p.Modificado
                                         FROM dbo.Producto p
                                         INNER JOIN dbo.ProductoCategoria pc ON pc.ProductoCategoriaId = p.ProductoCategoriaId
+                                        INNER JOIN dbo.Proveedor pr ON pr.ProveedorId = p.ProveedorId
                                         WHERE p.ProductoCategoriaId = @ProductoCategoriaId
                                         ORDER BY p.Codigo
                                     END
                                     ELSE
                                     BEGIN
-                                        SELECT p.ProductoId, pc.ProductoCategoriaId, 'BMC-'+p.Codigo Codigo, pc.Categoria, p.Nombre, p.Cantidad, p.Descripcion, p.Monto, p.Modificado
+                                        SELECT p.ProductoId, pc.ProductoCategoriaId, p.ProveedorId, pr.Proveedor, 'BMC-'+p.Codigo Codigo, pc.Categoria, p.Articulo, p.Cantidad, p.Descripcion, p.Precio, p.Modificado
                                         FROM dbo.Producto p
                                         INNER JOIN dbo.ProductoCategoria pc ON pc.ProductoCategoriaId = p.ProductoCategoriaId
+                                        INNER JOIN dbo.Proveedor pr ON pr.ProveedorId = p.ProveedorId
+
                                     END";
 
 
@@ -72,14 +76,17 @@ namespace CapaDatos
                     comm.Connection = cn;
                     comm.CommandText = @"SELECT p.ProductoId, 
                                                 p.Codigo,
-                                         	    p.Nombre, 
+                                                p.ProveedorId,
+                                                pr.Proveedor
+                                         	    p.Articulo, 
                                          	    p.Cantidad, 
                                          	    p.Descripcion, 
-                                         	    p.Monto,
+                                         	    p.Precio,
                                          	    p.Creado,
                                          	    p.Modificado
                                          FROM dbo.Producto p
-                                         WHERE p.ProductoId = @productoId";
+                                         WHERE p.ProductoId = @productoId
+                                         INNER JOIN dbo.Proveedor pr ON pr.ProveedorId = p.ProveedorId";
                     try
                     {
                         comm.Parameters.AddWithValue("@productoId", productoId);
@@ -224,12 +231,13 @@ namespace CapaDatos
 
                                          SELECT @CodigoNuevo = dbo.GeneradorCodigoProducto(@CodigoMax);
 
-                                         INSERT INTO dbo.Producto(ProductoId, Codigo, ProductoCategoriaId, Nombre, Cantidad, Descripcion, Monto, Creado, Modificado)
-                                         VALUES(NEWID(), @CodigoNuevo, @ProductoCategoriaId, @nombre, @cantidad, @descripcion, @monto, GETDATE(), GETDATE())";
+                                         INSERT INTO dbo.Producto(ProductoId, Codigo, ProductoCategoriaId, ProveedorId, Articulo, Cantidad, Descripcion, Precio, Creado, Modificado)
+                                         VALUES(NEWID(), @CodigoNuevo, @ProductoCategoriaId, @ProveedorId, @nombre, @cantidad, @descripcion, @monto, GETDATE(), GETDATE())";
                     try
                     {
                         comm.Parameters.AddWithValue("@productoId", producto.ProductoId);
                         comm.Parameters.AddWithValue("@ProductoCategoriaId", producto.ProductoCategoriaId);
+                        comm.Parameters.AddWithValue("@ProveedorId", producto.ProveedorId);
                         comm.Parameters.AddWithValue("@nombre", producto.Nombre);
                         comm.Parameters.AddWithValue("@cantidad", producto.Cantidad);
                         comm.Parameters.AddWithValue("@descripcion", producto.Descripcion);
@@ -259,15 +267,17 @@ namespace CapaDatos
                 {
                     comm.Connection = cn;
                     comm.CommandText = @"UPDATE dbo.Producto
-                                         SET Nombre = @nombre,
+                                         SET Articulo = @nombre,
                                              Cantidad = @cantidad,
+                                             ProveedorId = @ProveedorId,
                                          	 Descripcion = @descripcion,
-                                         	 Monto = @monto,
+                                         	 Precio = @monto,
 	                                         Modificado = GETDATE()
                                          WHERE ProductoId = @productoId";
                     try
                     {
                         comm.Parameters.AddWithValue("@productoId", producto.ProductoId);
+                        comm.Parameters.AddWithValue("@ProveedorId", producto.ProveedorId);
                         comm.Parameters.AddWithValue("@nombre", producto.Nombre);
                         comm.Parameters.AddWithValue("@cantidad", producto.Cantidad);
                         comm.Parameters.AddWithValue("@descripcion", producto.Descripcion);
