@@ -36,7 +36,7 @@
             this.lbcampo = new System.Windows.Forms.Label();
             this.btncrearcliente = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.btnclienteseleccionado = new System.Windows.Forms.Button();
+            this.btnvendedorseleccionado = new System.Windows.Forms.Button();
             this.txtprimerapellido = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
@@ -129,16 +129,16 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 24;
             // 
-            // btnclienteseleccionado
+            // btnvendedorseleccionado
             // 
-            this.btnclienteseleccionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnclienteseleccionado.Location = new System.Drawing.Point(9, 443);
-            this.btnclienteseleccionado.Name = "btnclienteseleccionado";
-            this.btnclienteseleccionado.Size = new System.Drawing.Size(224, 38);
-            this.btnclienteseleccionado.TabIndex = 23;
-            this.btnclienteseleccionado.Text = "Agregar Vendedor Seleccionado";
-            this.btnclienteseleccionado.UseVisualStyleBackColor = true;
-            this.btnclienteseleccionado.Click += new System.EventHandler(this.btnclienteseleccionado_Click);
+            this.btnvendedorseleccionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnvendedorseleccionado.Location = new System.Drawing.Point(9, 443);
+            this.btnvendedorseleccionado.Name = "btnvendedorseleccionado";
+            this.btnvendedorseleccionado.Size = new System.Drawing.Size(224, 38);
+            this.btnvendedorseleccionado.TabIndex = 23;
+            this.btnvendedorseleccionado.Text = "Agregar Vendedor Seleccionado";
+            this.btnvendedorseleccionado.UseVisualStyleBackColor = true;
+            this.btnvendedorseleccionado.Click += new System.EventHandler(this.btnvendedorseleccionado_Click);
             // 
             // txtprimerapellido
             // 
@@ -167,7 +167,7 @@
             this.Controls.Add(this.lbcampo);
             this.Controls.Add(this.btncrearcliente);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.btnclienteseleccionado);
+            this.Controls.Add(this.btnvendedorseleccionado);
             this.Controls.Add(this.txtprimerapellido);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
@@ -194,7 +194,7 @@
         private System.Windows.Forms.Label lbcampo;
         private System.Windows.Forms.Button btncrearcliente;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button btnclienteseleccionado;
+        private System.Windows.Forms.Button btnvendedorseleccionado;
         private System.Windows.Forms.TextBox txtprimerapellido;
         private System.Windows.Forms.DataGridView dataGridView1;
     }

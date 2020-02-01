@@ -13,6 +13,8 @@ namespace SistemaVentas
 {
     public partial class Compras : Form
     {
+        public string vendedorId;
+        public string clienteId;
         public Compras()
         {
             InitializeComponent();
@@ -87,12 +89,7 @@ namespace SistemaVentas
 
         }
 
-        private void txtcliente_TextChanged(object sender, EventArgs e)
-        {
-            BuscarClientes frm = new BuscarClientes();
-            AddOwnedForm(frm);
-            frm.Show();
-        }
+        
 
         private void ListFrecuencia()
         {

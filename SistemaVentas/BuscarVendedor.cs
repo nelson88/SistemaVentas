@@ -73,9 +73,13 @@ namespace SistemaVentas
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void btnclienteseleccionado_Click(object sender, EventArgs e)
+        private void btnvendedorseleccionado_Click(object sender, EventArgs e)
         {
+            Compras formCompras = Owner as Compras;
 
+            formCompras.txtvendedor.Text = dataGridView1.CurrentRow.Cells["Vendedor"].Value.ToString();
+            formCompras.vendedorId = dataGridView1.CurrentRow.Cells["VendedorId"].Value.ToString();
+            this.Close();
         }
     }
 }

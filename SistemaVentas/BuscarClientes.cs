@@ -62,47 +62,47 @@ namespace SistemaVentas
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(isRecibo)
-            {
-                Recibo formRecibo = Owner as Recibo;
+            //if(isRecibo)
+            //{
+            //    Recibo formRecibo = Owner as Recibo;
 
-                formRecibo.txtcliente.Text = dataGridView1.CurrentRow.Cells["PrimerNombre"].Value.ToString();
-                formRecibo.clienteId = dataGridView1.CurrentRow.Cells["ClienteId"].Value.ToString();
-                this.Close();
-            }
-            else
-            {
-                AsignacionProductoCliente formcompra = Owner as AsignacionProductoCliente;
+            //    formRecibo.txtcliente.Text = dataGridView1.CurrentRow.Cells["PrimerNombre"].Value.ToString();
+            //    formRecibo.clienteId = dataGridView1.CurrentRow.Cells["ClienteId"].Value.ToString();
+            //    this.Close();
+            //}
+            //else
+            //{
+            //    AsignacionProductoCliente formcompra = Owner as AsignacionProductoCliente;
 
-                formcompra.txtcliente.Text = dataGridView1.CurrentRow.Cells["PrimerNombre"].Value.ToString();
-                formcompra.clienteId = dataGridView1.CurrentRow.Cells["ClienteId"].Value.ToString();
-                this.Close();
-            }
+            //    formcompra.txtcliente.Text = dataGridView1.CurrentRow.Cells["PrimerNombre"].Value.ToString();
+            //    formcompra.clienteId = dataGridView1.CurrentRow.Cells["ClienteId"].Value.ToString();
+            //    this.Close();
+            //}
 
-            isRecibo = true;
+            //isRecibo = true;
         }
 
-        private void btnaceptar_Click(object sender, EventArgs e)
-        {
-            if (isRecibo)
-            {
-                Recibo formRecibo = Owner as Recibo;
+        //private void btnaceptar_Click(object sender, EventArgs e)
+        //{
+        //    //if (isRecibo)
+        //    //{
+        //        Compras formCompras = Owner as Compras;
 
-                formRecibo.txtcliente.Text = dataGridView1.CurrentRow.Cells["PrimerNombre"].Value.ToString();
-                formRecibo.clienteId = dataGridView1.CurrentRow.Cells["ClienteId"].Value.ToString();
-                this.Close();
-            }
-            else
-            {
-                AsignacionProductoCliente formcompra = Owner as AsignacionProductoCliente;
+        //        formCompras.txtcliente.Text = dataGridView1.CurrentRow.Cells["PrimerNombre"].Value.ToString();
+        //        formCompras.clienteId = dataGridView1.CurrentRow.Cells["ClienteId"].Value.ToString();
+        //        this.Close();
+        //    //}
+        //    //else
+        //    //{
+        //    //    AsignacionProductoCliente formcompra = Owner as AsignacionProductoCliente;
 
-                formcompra.txtcliente.Text = dataGridView1.CurrentRow.Cells["PrimerNombre"].Value.ToString();
-                formcompra.clienteId = dataGridView1.CurrentRow.Cells["ClienteId"].Value.ToString();
-                this.Close();
-            }
+        //    //    formcompra.txtcliente.Text = dataGridView1.CurrentRow.Cells["PrimerNombre"].Value.ToString();
+        //    //    formcompra.clienteId = dataGridView1.CurrentRow.Cells["ClienteId"].Value.ToString();
+        //    //    this.Close();
+        //    //}
 
-            isRecibo = true;
-        }
+        //    //isRecibo = true;
+        //}
 
         private void btncrearcliente_Click(object sender, EventArgs e)
         {
@@ -128,6 +128,15 @@ namespace SistemaVentas
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnclienteseleccionado_Click(object sender, EventArgs e)
+        {
+            Compras formCompras = Owner as Compras;
+
+            formCompras.txtcliente.Text = dataGridView1.CurrentRow.Cells["PrimerNombre"].Value.ToString();
+            formCompras.clienteId = dataGridView1.CurrentRow.Cells["ClienteId"].Value.ToString();
+            this.Close();
         }
     }
 }

@@ -289,7 +289,7 @@
             this.txtcliente.Size = new System.Drawing.Size(135, 20);
             this.txtcliente.TabIndex = 28;
             this.txtcliente.Click += new System.EventHandler(this.txtcliente_Click);
-            this.txtcliente.TextChanged += new System.EventHandler(this.txtcliente_TextChanged);
+            //this.txtcliente.TextChanged += new System.EventHandler(this.txtcliente_TextChanged);
             // 
             // txtvendedor
             // 
@@ -365,7 +365,7 @@
         private System.Windows.Forms.Label lbtotalcompra;
         private System.Windows.Forms.Label lbdescuento;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtcliente;
-        private System.Windows.Forms.TextBox txtvendedor;
+        public System.Windows.Forms.TextBox txtvendedor;
+        public System.Windows.Forms.TextBox txtcliente;
     }
 }
