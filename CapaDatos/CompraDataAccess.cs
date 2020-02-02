@@ -63,7 +63,7 @@ namespace CapaDatos
 
         }
 
-        public bool InsertarCompra(FacturacionModel compra, List<ArticuloFactura> af)
+        public bool InsertarCompra(FacturacionModel compra)
         {
             bool succes = true;
 
@@ -73,37 +73,24 @@ namespace CapaDatos
                 using (var comm = new SqlCommand())
                 {
                     comm.Connection = cn;
-                    comm.CommandText = @"DECLARE @ProductoMonto DECIMAL(6, 2)
-                                         
-                                         SELECT @ProductoMonto = p.Monto
-                                         FROM dbo.Producto p
-                                         WHERE p.ProductoId = @ProductoId
-
-                                         INSERT INTO dbo.Client_Produc(ClientProducId, ClienteId, ProductoId, Monto,
-                                                                       Nuevo_Saldo, FechaAdquisicion, MesesPagar, MontoPrima,
-                                         	                           FrecuenciaId, DiaSemana, DiaPrimeraQuincena, DiaSegundaQuincena,
-                                                                       DiaMes, Creado, Modificado)
-                                         VALUES(NEWID(), @ClienteId, @ProductoId, @ProductoMonto, @Nuevo_Saldo, @FechaAdquisicion, 
-                                                @MesesPagar, @MontoPrima, @FrecuenciaId, @DiaSemana, @DiaPrimeraQuincena, @DiaSegundaQuincena,
-                                                @DiaMes, GETDATE(), GETDATE())
-
-                                        UPDATE dbo.Producto
-                                        SET Cantidad = p.Cantidad - 1
-                                        FROM dbo.Producto p
-                                        WHERE p.ProductoId = @ProductoId";
+                    comm.CommandText = @"INSERT INTO dbo.Facturacion(FacturacionId, VendedorId, ClienteId, Fecha, TipoPago, 
+                                                                     AbonoInicial, Descuento, TotalPago, FrecuenciaId, Creado, 
+                                         							 Modificado, Dias, Monto, Observaciones)
+                                         VALUES(@FacturacionId, @VendedorId, @ClienteId, @Fecha, @TipoPago, 
+                                                @AbonoInicial, @Descuento, @TotalPago, @FrecuenciaId, GETDATE(), 
+                                          	    GETDATE(), 0, 0, @Observaciones)";
                     try
                     {
-                        comm.Parameters.AddWithValue("@ClienteId", clienteProducto.ClienteId);
-                        comm.Parameters.AddWithValue("@ProductoId", clienteProducto.ProductoId);
-                        comm.Parameters.AddWithValue("@FechaAdquisicion", clienteProducto.FechaAdquisicion);
-                        comm.Parameters.AddWithValue("@MesesPagar", clienteProducto.MesesPagar);
-                        comm.Parameters.AddWithValue("@MontoPrima", clienteProducto.MontoPrima);
-                        comm.Parameters.AddWithValue("@Nuevo_Saldo", clienteProducto.Nuevo_Saldo);
-                        comm.Parameters.AddWithValue("@FrecuenciaId", clienteProducto.FrecuenciaId);
-                        comm.Parameters.AddWithValue("@DiaSemana", clienteProducto.DiaSemana);
-                        comm.Parameters.AddWithValue("@DiaPrimeraQuincena", clienteProducto.DiaPrimeraQuincena);
-                        comm.Parameters.AddWithValue("@DiaSegundaQuincena", clienteProducto.DiaSegundaQuincena);
-                        comm.Parameters.AddWithValue("@DiaMes", clienteProducto.DiaMes);
+                        comm.Parameters.AddWithValue("@FacturacionId", compra.FacturacionId);
+                        comm.Parameters.AddWithValue("@VendedorId", compra.VendedorId);
+                        comm.Parameters.AddWithValue("@ClienteId", compra.ClienteId);
+                        comm.Parameters.AddWithValue("@Fecha", compra.Fecha);
+                        comm.Parameters.AddWithValue("@TipoPago", compra.TipoPago);
+                        comm.Parameters.AddWithValue("@AbonoInicial", compra.AbonoInicial);
+                        comm.Parameters.AddWithValue("@Descuento", compra.Descuento);
+                        comm.Parameters.AddWithValue("@TotalPago", compra.TotalPago);
+                        comm.Parameters.AddWithValue("@FrecuenciaId", compra.FrecuenciaId);
+                        comm.Parameters.AddWithValue("@Observaciones", compra.Observaciones);
 
 
                         comm.CommandType = CommandType.Text;
@@ -118,6 +105,49 @@ namespace CapaDatos
 
             return succes;
         }
+
+        public bool InsertarArticulosPorFaturas(List<ArticuloFactura> af, Guid facturacionId)
+        {
+            bool succes = true;
+            
+            foreach(ArticuloFactura articFac in af)
+            {
+                using (var cn = GetConnection())
+                {
+                    cn.Open();
+                    using (var comm = new SqlCommand())
+                    {
+                        comm.Connection = cn;
+                        comm.CommandText = @"INSERT INTO dbo.ArticulosFactura(ArticulosFacturaId, FacturacionId, ProductoId, Cantidad, Precio, Descuento, Creado, Modificado)
+                                             VALUES(NEWID(), @FacturacionId, @ProductoId, @Cantidad, @Precio, @Descuento, GETDATE(), GETDATE())
+                                             
+                                             UPDATE dbo.Producto
+                                             SET Cantidad = p.Cantidad - @Cantidad
+                                             FROM dbo.Producto p
+                                             WHERE p.ProductoId = @ProductoId";
+                        try
+                        {
+                            comm.Parameters.AddWithValue("@FacturacionId", facturacionId);
+                            comm.Parameters.AddWithValue("@ProductoId", articFac.ProductoId);
+                            comm.Parameters.AddWithValue("@Cantidad", articFac.Cantidad);
+                            comm.Parameters.AddWithValue("@Precio", articFac.Precio);
+                            comm.Parameters.AddWithValue("@Descuento", articFac.Descuento);
+
+                            comm.CommandType = CommandType.Text;
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            succes = false;
+                        }
+                    }
+                }
+            }
+            
+
+            return succes;
+        }
+
         public bool ActualizarCompra(Client_Produc clienteProducto)
         {
             bool succes = true;

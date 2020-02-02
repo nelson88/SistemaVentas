@@ -102,9 +102,13 @@ namespace SistemaVentas
             facturacion.Observaciones = txtobservaciones.Text;
             facturacion.TotalPago = totalcompra;
             facturacion.Descuento = totaldescuento;
+            facturacion.FacturacionId = Guid.NewGuid();
 
             comprac.InsertarCompra(facturacion, af);
             LimpiarCampos();
+            ObtenerProductos();
+            dataGridView2.Rows.Clear();
+            dataGridView2.Refresh();
         }
 
         private void button1_Click(object sender, EventArgs e)

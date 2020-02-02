@@ -157,11 +157,11 @@ namespace SistemaVentas
 
                 if (Editar == false)
                 {
-                    if (controller.InsertarCompra(venta.clientProduc))
-                    {
-                        LimpiarTextBox();
-                        ListCompras();
-                    }
+                    //if (controller.InsertarCompra(venta.clientProduc))
+                    //{
+                    //    LimpiarTextBox();
+                    //    ListCompras();
+                    //}
                 }
                 if (Editar == true)
                 {

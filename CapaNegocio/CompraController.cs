@@ -37,7 +37,11 @@ namespace CapaNegocio
         public bool InsertarCompra(FacturacionModel compra, List<ArticuloFactura> af)
         {
             bool succes = true;
-            succes = data.InsertarCompra(compra, af);
+            succes = data.InsertarCompra(compra);
+            if (succes)
+            {
+                succes = data.InsertarArticulosPorFaturas(af, compra.FacturacionId);
+            }
             return succes;
         }
 
