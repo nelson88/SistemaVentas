@@ -34,10 +34,10 @@ namespace CapaNegocio
             return dt;
         }
 
-        public bool InsertarCompra(Client_Produc compra)
+        public bool InsertarCompra(FacturacionModel compra, List<ArticuloFactura> af)
         {
             bool succes = true;
-            succes = data.InsertarCompra(compra);
+            succes = data.InsertarCompra(compra, af);
             return succes;
         }
 

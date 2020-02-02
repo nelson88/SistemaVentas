@@ -123,7 +123,7 @@ namespace SistemaVentas
 
         private void btncliente_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new Cliente());
+            //AbrirFormHija(new Cliente());
         }
         private void btnrecibo_Click(object sender, EventArgs e)
         {

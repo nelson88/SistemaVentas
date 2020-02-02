@@ -63,7 +63,7 @@ namespace CapaDatos
 
         }
 
-        public bool InsertarCompra(Client_Produc clienteProducto)
+        public bool InsertarCompra(FacturacionModel compra, List<ArticuloFactura> af)
         {
             bool succes = true;
 

@@ -82,6 +82,22 @@ namespace CapaEntidad
     }
     #endregion
 
+    public class FacturacionModel
+    {
+        public Guid FacturacionId { get; set; }
+        public Guid ClienteId { get; set; }
+        public Guid VendedorId { get; set; }
+        //public decimal Monto { get; set; }
+        public decimal AbonoInicial { get; set; }
+        public decimal Descuento { get; set; }
+        public decimal TotalPago { get; set; }
+        public int TipoPago { get; set; }
+        public DateTime Fecha { get; set; }
+        public int FrecuenciaId { get; set; }
+        public string Observaciones { get; set; }
+        //public int Dias { get; set; }
+    }
+
     public class Client_Produc
     {
        public Guid ClientProducId { get; set; }
@@ -160,4 +176,10 @@ namespace CapaEntidad
        public DateTime Modificado { get; set; }
     }
     #endregion
+
+    public class ArticuloFactura
+    {
+        public Guid ProductoId { get; set; }
+        public int Cantidad { get; set; }
+    }
 }
