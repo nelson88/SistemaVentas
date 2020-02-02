@@ -30,7 +30,7 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnrealizarabono = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btinfofactura = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -71,15 +71,16 @@
             this.dataGridView2.Size = new System.Drawing.Size(385, 217);
             this.dataGridView2.TabIndex = 2;
             // 
-            // button2
+            // btnrealizarabono
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(336, 470);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(131, 40);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Realizar Abono";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnrealizarabono.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnrealizarabono.Location = new System.Drawing.Point(336, 470);
+            this.btnrealizarabono.Name = "btnrealizarabono";
+            this.btnrealizarabono.Size = new System.Drawing.Size(131, 40);
+            this.btnrealizarabono.TabIndex = 3;
+            this.btnrealizarabono.Text = "Realizar Abono";
+            this.btnrealizarabono.UseVisualStyleBackColor = true;
+            this.btnrealizarabono.Click += new System.EventHandler(this.btnrealizarabono_Click);
             // 
             // button3
             // 
@@ -265,7 +266,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btinfofactura);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnrealizarabono);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -281,7 +282,7 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnrealizarabono;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btinfofactura;
         private System.Windows.Forms.Label label1;
@@ -299,7 +300,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label lbfechafactura;
         private System.Windows.Forms.Label lbfechapago;
-        private System.Windows.Forms.Label lbsaldopendiente;
+        public System.Windows.Forms.Label lbsaldopendiente;
 
         #endregion
 

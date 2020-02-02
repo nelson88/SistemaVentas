@@ -106,6 +106,12 @@
     <Compile Include="ContenidoInicial.Designer.cs">
       <DependentUpon>ContenidoInicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="CrearAbono.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearAbono.Designer.cs">
+      <DependentUpon>CrearAbono.cs</DependentUpon>
+    </Compile>
     <Compile Include="CrearProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ContenidoInicial.resx">
       <DependentUpon>ContenidoInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrearAbono.resx">
+      <DependentUpon>CrearAbono.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrearProveedor.resx">
       <DependentUpon>CrearProveedor.cs</DependentUpon>

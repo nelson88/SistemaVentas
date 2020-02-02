@@ -184,4 +184,14 @@ namespace CapaEntidad
         public decimal Precio { get; set; }
         public decimal Descuento { get; set; }
     }
+
+    public class AbonoModel
+    {
+        public Guid AbonoId { get; set; }
+        public Guid FacturacionId { get; set; }
+        public string Codigo { get; set; }
+        public DateTime Fecha { get; set; }
+        public decimal Abono { get; set; }
+        public string Observacion { get; set; }
+    }
 }

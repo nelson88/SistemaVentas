@@ -16,8 +16,8 @@ namespace SistemaVentas
     {
         ProductoController controller = new ProductoController();
         VentaModel venta = new VentaModel();
-        private string productoId = null;
-        private bool Editar = false;
+        public Guid FacturacionId;
+        public string SaldoPendiente = "";
         public Facturacion()
         {
             InitializeComponent();
@@ -184,11 +184,12 @@ namespace SistemaVentas
         {
             ReciboController reciboc = new ReciboController();
 
-            Guid FacturacionId = new Guid(dataGridView1.CurrentRow.Cells["FacturacionId"].Value.ToString());
+            FacturacionId = new Guid(dataGridView1.CurrentRow.Cells["FacturacionId"].Value.ToString());
             DateTime datefecha = Convert.ToDateTime(dataGridView1.CurrentRow.Cells["Fecha"].Value.ToString());
             lbfechafactura.Text = datefecha.ToString("MM/dd/yyyy");
             lbfechapago.Text = "";
             lbsaldopendiente.Text = dataGridView1.CurrentRow.Cells["SaldoPendiente"].Value.ToString();
+            SaldoPendiente = dataGridView1.CurrentRow.Cells["SaldoPendiente"].Value.ToString();
 
             dataGridView2.DataSource = reciboc.ListarAbonos(FacturacionId);
             dataGridView2.Columns["AbonoId"].Visible = false;
@@ -197,6 +198,13 @@ namespace SistemaVentas
             dataGridView3.Columns["ArticulosFacturaId"].Visible = false;
             dataGridView3.Columns["FacturacionId"].Visible = false;
             dataGridView3.Columns["ProductoId"].Visible = false;
+        }
+
+        private void btnrealizarabono_Click(object sender, EventArgs e)
+        {
+            CrearAbono cp = new CrearAbono();
+            AddOwnedForm(cp);
+            cp.Show();
         }
         //public bool ProductosValidacion()
         //{

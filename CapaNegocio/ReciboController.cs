@@ -26,6 +26,15 @@ namespace CapaNegocio
             dt = data.ListarAbonos(FacturacionId);
             return dt;
         }
+
+        public bool InsertarAbono(AbonoModel abonoModel)
+        {
+            bool succes = true;
+            succes = data.InsertarAbono(abonoModel);
+            
+            return succes;
+        }
+
         public DataTable ListarProductoFacturados(Guid FacturacionId)
         {
             DataTable dt = new DataTable();
