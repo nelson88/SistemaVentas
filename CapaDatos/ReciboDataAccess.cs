@@ -11,12 +11,11 @@ namespace CapaDatos
 {
     public class ReciboDataAccess : ConnectionSql
     {
-        SqlDataReader leer;
-        DataTable dt = new DataTable();
-        SqlCommand command = new SqlCommand();
-
         public DataTable ObtnerRecibos()
         {
+            SqlDataReader leer;
+            DataTable dt = new DataTable();
+            SqlCommand command = new SqlCommand();
             command.Connection = AbrirConexion();
             command.CommandText = @"SELECT r.ReciboId, r.Codigo, r.ClienteId, cp.ClientProducId,  c.PrimerNombre, c.PrimerApellido, 
                                            r.FechaAbono, r.Concepto, p.Nombre Compra, r.MontoAbono, r.NuevoSaldo, r.Creado, r.Modificado
@@ -31,6 +30,50 @@ namespace CapaDatos
             return dt;
 
         }
+
+        public DataTable ListarAbonos(Guid FacturacionId)
+        {
+            SqlDataReader leer;
+            DataTable dt = new DataTable();
+            SqlCommand command = new SqlCommand();
+            command.Connection = AbrirConexion();
+            command.CommandText = @"SELECT a.AbonoId, a.FacturacionId, a.Codigo, 
+                                           a.Fecha, a.Abono, a.Observacion
+                                    FROM dbo.Abono a
+                                    WHERE a.FacturacionId = @FacturacionId";
+
+            command.Parameters.AddWithValue("@FacturacionId", FacturacionId);
+
+            leer = command.ExecuteReader();
+            dt.Load(leer);
+            leer.Close();
+            CerrarConexion();
+            return dt;
+
+        }
+
+        public DataTable ListarProductoFacturados(Guid FacturacionId)
+        {
+            SqlDataReader leer;
+            DataTable dt = new DataTable();
+            SqlCommand command = new SqlCommand();
+
+            command.Connection = AbrirConexion();
+            command.CommandText = @"SELECT af.ArticulosFacturaId, af.FacturacionId, af.ProductoId, p.Articulo, p.Descripcion
+                                    FROM dbo.ArticulosFactura af
+                                    INNER JOIN dbo.Producto p ON p.ProductoId = af.ProductoId
+                                    WHERE af.FacturacionId = @FacturacionId";
+
+            command.Parameters.AddWithValue("@FacturacionId", FacturacionId);
+
+            leer = command.ExecuteReader();
+            dt.Load(leer);
+            leer.Close();
+            CerrarConexion();
+            return dt;
+
+        }
+
         public bool InsertarRecibo(Recibo recibo)
         {
             bool succes = true;

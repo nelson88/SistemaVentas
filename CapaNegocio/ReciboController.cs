@@ -20,6 +20,19 @@ namespace CapaNegocio
             return dt;
         }
 
+        public DataTable ListarAbonos(Guid FacturacionId)
+        {
+            DataTable dt = new DataTable();
+            dt = data.ListarAbonos(FacturacionId);
+            return dt;
+        }
+        public DataTable ListarProductoFacturados(Guid FacturacionId)
+        {
+            DataTable dt = new DataTable();
+            dt = data.ListarProductoFacturados(FacturacionId);
+            return dt;
+        }
+
         public bool InsertarRecibo(Recibo recibo)
         {
             bool succes = true;

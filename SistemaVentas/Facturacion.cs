@@ -162,18 +162,41 @@ namespace SistemaVentas
 
         private void Facturacion_Load_1(object sender, EventArgs e)
         {
-            ObtenerProductos();
+            ObtenerCompras();
         }
 
-        private void ObtenerProductos()
+        private void ObtenerCompras()
         {
-            ProductoController con = new ProductoController();
-            dataGridView1.DataSource = con.ObtenerProductos();
+            CompraController con = new CompraController();
+            dataGridView1.DataSource = con.ObtenerCompra();
+            dataGridView1.Columns["FacturacionId"].Visible = false;
+            dataGridView1.Columns["ClienteId"].Visible = false;
+            dataGridView1.Columns["SaldoPendiente"].Visible = false;
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+        }
 
+        private void btinfofactura_Click(object sender, EventArgs e)
+        {
+            ReciboController reciboc = new ReciboController();
+
+            Guid FacturacionId = new Guid(dataGridView1.CurrentRow.Cells["FacturacionId"].Value.ToString());
+            DateTime datefecha = Convert.ToDateTime(dataGridView1.CurrentRow.Cells["Fecha"].Value.ToString());
+            lbfechafactura.Text = datefecha.ToString("MM/dd/yyyy");
+            lbfechapago.Text = "";
+            lbsaldopendiente.Text = dataGridView1.CurrentRow.Cells["SaldoPendiente"].Value.ToString();
+
+            dataGridView2.DataSource = reciboc.ListarAbonos(FacturacionId);
+            dataGridView2.Columns["AbonoId"].Visible = false;
+            dataGridView2.Columns["FacturacionId"].Visible = false;
+            dataGridView3.DataSource = reciboc.ListarProductoFacturados(FacturacionId);
+            dataGridView3.Columns["ArticulosFacturaId"].Visible = false;
+            dataGridView3.Columns["FacturacionId"].Visible = false;
+            dataGridView3.Columns["ProductoId"].Visible = false;
         }
         //public bool ProductosValidacion()
         //{

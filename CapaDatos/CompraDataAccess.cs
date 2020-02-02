@@ -18,17 +18,10 @@ namespace CapaDatos
         public DataTable ObtnerCompras()
         {
             command.Connection = AbrirConexion();
-            command.CommandText = @"SELECT cp.ClientProducId, cp.ClienteId, c.Cedula, c.PrimerNombre,
-                                           c.PrimerApellido, p.ProductoId, p.Nombre,
-                                           cp.Monto, cp.Nuevo_Saldo, cp.FechaAdquisicion, cp.MesesPagar,
-                                           cp.FrecuenciaId, f.Nombre Frecuenca, d.Nombre Dia, cp.MontoPrima,
-                                           cp.DiaSemana, cp.DiaPrimeraQuincena, cp.DiaSegundaQuincena, cp.DiaMes,
-                                           cp.Creado, cp.Modificado
-                                    FROM dbo.Client_Produc cp
-                                    INNER JOIN dbo.Cliente c ON c.ClienteId = cp.ClienteId
-                                    INNER JOIN dbo.Producto p ON p.ProductoId = cp.ProductoId
-                                    INNER JOIN dbo.Frecuencia f ON f.FrecuenciaId = cp.FrecuenciaId
-                                    LEFT JOIN dbo.Dias d ON d.DiaId = cp.DiaSemana";
+            command.CommandText = @"SELECT f.FacturacionId, c.ClienteId, c.PrimerNombre, 
+                                    f.Fecha, f.TotalPago, f.Observaciones, f.SaldoPendiente
+                                    FROM dbo.Facturacion f
+                                    INNER JOIN dbo.Cliente c ON c.ClienteId = f.ClienteId";
             leer = command.ExecuteReader();
             dt.Load(leer);
             leer.Close();
@@ -75,10 +68,10 @@ namespace CapaDatos
                     comm.Connection = cn;
                     comm.CommandText = @"INSERT INTO dbo.Facturacion(FacturacionId, VendedorId, ClienteId, Fecha, TipoPago, 
                                                                      AbonoInicial, Descuento, TotalPago, FrecuenciaId, Creado, 
-                                         							 Modificado, Dias, Monto, Observaciones)
+                                         							 Modificado, Dias, SaldoPendiente, Observaciones)
                                          VALUES(@FacturacionId, @VendedorId, @ClienteId, @Fecha, @TipoPago, 
                                                 @AbonoInicial, @Descuento, @TotalPago, @FrecuenciaId, GETDATE(), 
-                                          	    GETDATE(), 0, 0, @Observaciones)";
+                                          	    GETDATE(), 0, @TotalPago, @Observaciones)";
                     try
                     {
                         comm.Parameters.AddWithValue("@FacturacionId", compra.FacturacionId);
