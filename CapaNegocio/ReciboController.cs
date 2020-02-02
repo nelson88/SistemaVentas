@@ -35,6 +35,14 @@ namespace CapaNegocio
             return succes;
         }
 
+        public bool CancelarAbono(AbonoModel abonoModel)
+        {
+            bool succes = true;
+            succes = data.CancelarAbono(abonoModel);
+
+            return succes;
+        }
+
         public DataTable ListarProductoFacturados(Guid FacturacionId)
         {
             DataTable dt = new DataTable();

@@ -206,6 +206,13 @@ namespace SistemaVentas
             AddOwnedForm(cp);
             cp.Show();
         }
+
+        private void btncancelarfactura_Click(object sender, EventArgs e)
+        {
+            CancelarFactura cp = new CancelarFactura();
+            AddOwnedForm(cp);
+            cp.Show();
+        }
         //public bool ProductosValidacion()
         //{
         //    bool success = false;

@@ -31,7 +31,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.btnrealizarabono = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btncancelarfactura = new System.Windows.Forms.Button();
             this.btinfofactura = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -82,15 +82,16 @@
             this.btnrealizarabono.UseVisualStyleBackColor = true;
             this.btnrealizarabono.Click += new System.EventHandler(this.btnrealizarabono_Click);
             // 
-            // button3
+            // btncancelarfactura
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(490, 470);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(140, 40);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Cancelar Factura";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btncancelarfactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncancelarfactura.Location = new System.Drawing.Point(490, 470);
+            this.btncancelarfactura.Name = "btncancelarfactura";
+            this.btncancelarfactura.Size = new System.Drawing.Size(140, 40);
+            this.btncancelarfactura.TabIndex = 4;
+            this.btncancelarfactura.Text = "Cancelar Factura";
+            this.btncancelarfactura.UseVisualStyleBackColor = true;
+            this.btncancelarfactura.Click += new System.EventHandler(this.btncancelarfactura_Click);
             // 
             // btinfofactura
             // 
@@ -265,7 +266,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btinfofactura);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btncancelarfactura);
             this.Controls.Add(this.btnrealizarabono);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
@@ -283,7 +284,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button btnrealizarabono;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btncancelarfactura;
         private System.Windows.Forms.Button btinfofactura;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

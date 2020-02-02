@@ -117,6 +117,54 @@ namespace CapaDatos
             return succes;
         }
 
+        public bool CancelarAbono(AbonoModel abonoModel)
+        {
+            bool succes = true;
+
+            using (var cn = GetConnection())
+            {
+                cn.Open();
+                using (var comm = new SqlCommand())
+                {
+                    comm.Connection = cn;
+                    comm.CommandText = @"DECLARE @Abono DECIMAL(18, 2)
+
+                                         SELECT @Abono = f.SaldoPendiente
+                                         FROM dbo.Facturacion f
+                                         WHERE f.FacturacionId = @FacturacionId
+                                         
+                                         INSERT INTO dbo.Abono(AbonoId, Abono, FacturacionId, Codigo, Fecha, Observacion, Creado, Modificado)
+                                         VALUES(NEWID(), @Abono, @FacturacionId, @Codigo, @Fecha, @Observacion, GETDATE(), GETDATE())
+                                         
+                                         UPDATE dbo.Facturacion
+                                         SET SaldoPendiente = 0
+                                         WHERE FacturacionId = @FacturacionId";
+                    try
+                    {
+                        comm.Parameters.AddWithValue("@FacturacionId", abonoModel.FacturacionId);
+                        comm.Parameters.AddWithValue("@Codigo", abonoModel.Codigo);
+                        comm.Parameters.AddWithValue("@Fecha", abonoModel.Fecha);
+                        comm.Parameters.AddWithValue("@Observacion", abonoModel.Observacion);
+                        //comm.Parameters.AddWithValue("@AbonoInicial", compra.AbonoInicial);
+                        //comm.Parameters.AddWithValue("@Descuento", compra.Descuento);
+                        //comm.Parameters.AddWithValue("@TotalPago", compra.TotalPago);
+                        //comm.Parameters.AddWithValue("@FrecuenciaId", compra.FrecuenciaId);
+                        //comm.Parameters.AddWithValue("@Observaciones", compra.Observaciones);
+
+
+                        comm.CommandType = CommandType.Text;
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        succes = false;
+                    }
+                }
+            }
+
+            return succes;
+        }
+
         public bool InsertarRecibo(Recibo recibo)
         {
             bool succes = true;
