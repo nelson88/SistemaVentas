@@ -137,7 +137,8 @@ namespace CapaDatos
                                          VALUES(NEWID(), @Abono, @FacturacionId, @Codigo, @Fecha, @Observacion, GETDATE(), GETDATE())
                                          
                                          UPDATE dbo.Facturacion
-                                         SET SaldoPendiente = 0
+                                         SET SaldoPendiente = 0,
+                                             Modificado = GETDATE()
                                          WHERE FacturacionId = @FacturacionId";
                     try
                     {

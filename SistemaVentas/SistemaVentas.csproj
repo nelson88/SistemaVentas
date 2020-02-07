@@ -168,6 +168,18 @@
     <Compile Include="CrearCliente.Designer.cs">
       <DependentUpon>CrearCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="VerAbonos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerAbonos.Designer.cs">
+      <DependentUpon>VerAbonos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerProductos.Designer.cs">
+      <DependentUpon>VerProductos.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AsignacionProductoCliente.resx">
       <DependentUpon>AsignacionProductoCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -237,6 +249,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CrearCliente.resx">
       <DependentUpon>CrearCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerAbonos.resx">
+      <DependentUpon>VerAbonos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerProductos.resx">
+      <DependentUpon>VerProductos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

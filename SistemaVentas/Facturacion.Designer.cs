@@ -73,6 +73,7 @@
             // 
             // btnrealizarabono
             // 
+            this.btnrealizarabono.Enabled = false;
             this.btnrealizarabono.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnrealizarabono.Location = new System.Drawing.Point(336, 470);
             this.btnrealizarabono.Name = "btnrealizarabono";
@@ -84,6 +85,7 @@
             // 
             // btncancelarfactura
             // 
+            this.btncancelarfactura.Enabled = false;
             this.btncancelarfactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btncancelarfactura.Location = new System.Drawing.Point(490, 470);
             this.btncancelarfactura.Name = "btncancelarfactura";

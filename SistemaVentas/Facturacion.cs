@@ -191,6 +191,9 @@ namespace SistemaVentas
             lbsaldopendiente.Text = dataGridView1.CurrentRow.Cells["SaldoPendiente"].Value.ToString();
             SaldoPendiente = dataGridView1.CurrentRow.Cells["SaldoPendiente"].Value.ToString();
 
+            btnrealizarabono.Enabled = true;
+            btncancelarfactura.Enabled = true;
+
             dataGridView2.DataSource = reciboc.ListarAbonos(FacturacionId);
             dataGridView2.Columns["AbonoId"].Visible = false;
             dataGridView2.Columns["FacturacionId"].Visible = false;

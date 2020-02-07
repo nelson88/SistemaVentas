@@ -160,6 +160,7 @@ namespace SistemaVentas
             af = new List<ArticuloFactura>();
 
             dpfecha.Value = DateTime.Now;
+            txtcodigo.Text = "";
             txtcliente.Text = "";
             rbcontado.Checked = false;
             rbcredito.Checked = false;

@@ -46,6 +46,26 @@ namespace CapaDatos
 
         }
 
+        public DataTable ObtnerComprasCanceladas()
+        {
+            command.Connection = AbrirConexion();
+            command.CommandText = @"SELECT f.FacturacionId, c.ClienteId, c.PrimerNombre, 
+                                           f.Fecha, f.TotalPago, f.Descuento, fr.Nombre, 
+                                           f.Observaciones, v.Vendedor
+                                    FROM dbo.Facturacion f
+                                    INNER JOIN dbo.Cliente c ON c.ClienteId = f.ClienteId
+                                    INNER JOIN dbo.Vendedor v on v.VendedorId = f.VendedorId
+                                    INNER JOIN dbo.Frecuencia fr on fr.FrecuenciaId = f.FrecuenciaId
+                                    WHERE f.SaldoPendiente <= 0
+                                    ";
+            leer = command.ExecuteReader();
+            dt.Load(leer);
+            leer.Close();
+            CerrarConexion();
+            return dt;
+
+        }
+
         public DataTable ObtnerFrecuencia()
         {
             command.Connection = AbrirConexion();
