@@ -200,11 +200,18 @@ namespace SistemaVentas
             dataGridView3.Columns["ProductoId"].Visible = false;
         }
 
+        public void ObtnerAbonos()
+        {
+
+        }
         private void btnrealizarabono_Click(object sender, EventArgs e)
         {
             CrearAbono cp = new CrearAbono();
+            ReciboController reciboc = new ReciboController();
+
             AddOwnedForm(cp);
-            cp.Show();
+            cp.ShowDialog();
+            dataGridView2.DataSource = reciboc.ListarAbonos(FacturacionId);
         }
 
         private void btncancelarfactura_Click(object sender, EventArgs e)

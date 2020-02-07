@@ -85,7 +85,21 @@ namespace SistemaVentas
 
             formProducto.txtproveedor.Text = dataGridView1.CurrentRow.Cells["Proveedor"].Value.ToString();
             formProducto.proveedorId = dataGridView1.CurrentRow.Cells["ProveedorId"].Value.ToString();
+
+            
             this.Close();
+        }
+
+        private void BuscarProveedor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Producto formProducto = Owner as Producto;
+            formProducto.txtArticulo.Focus();
+        }
+
+        private void BuscarProveedor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Producto formProducto = Owner as Producto;
+            formProducto.txtArticulo.Focus();
         }
     }
 }

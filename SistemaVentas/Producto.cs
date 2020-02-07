@@ -76,7 +76,6 @@ namespace SistemaVentas
                 Editar = true;
                 int categoriaid = 0;
 
-                //txtCodigo.Text = dataGridView1.CurrentRow.Cells["Codigo"].Value.ToString();
                 categoriaid = (int)dataGridView1.CurrentRow.Cells["ProductoCategoriaId"].Value;
                 proveedorId = dataGridView1.CurrentRow.Cells["ProveedorId"].Value.ToString();
                 txtproveedor.Text = dataGridView1.CurrentRow.Cells["Proveedor"].Value.ToString();
@@ -123,23 +122,32 @@ namespace SistemaVentas
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
             bool sucess = false;
-            sucess = ProductosValidacion();
+            Producto producto = new Producto();
 
-            if(sucess)
-            {
-                Producto producto = new Producto();
+            DataRowView drcategoria = cmbCategoria.SelectedItem as DataRowView;
+            int categoriaid = (int)drcategoria.Row.ItemArray[0];
 
-                DataRowView drcategoria = cmbCategoria.SelectedItem as DataRowView;
-                int categoriaid = (int)drcategoria.Row.ItemArray[0];
-                
-                //venta.producto.Codigo = Convert.ToString(txtCodigo.Text);
-                venta.producto.ProductoCategoriaId = categoriaid;
-                venta.producto.ProveedorId = proveedorId;
-                venta.producto.Nombre = txtArticulo.Text;
-                venta.producto.Descripcion = txtObservacion.Text;
+            sucess = ProductosValidacion(categoriaid);
+
+            venta.producto.ProductoCategoriaId = categoriaid;
+            venta.producto.ProveedorId = proveedorId;
+            venta.producto.Nombre = txtArticulo.Text;
+            venta.producto.Descripcion = txtObservacion.Text;
+            if(txtPrecio.Text != "") {
                 venta.producto.Monto = Convert.ToDecimal(txtPrecio.Text);
+            }
+            if(txtPrecio.Text != "") {
                 venta.producto.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                venta.producto.PrecioTotal = Convert.ToDecimal(lbtotacompra.Text);
+            }
+            if (txtprecioventa.Text != "")
+            {
+                venta.producto.PrecioVenta = Convert.ToInt32(txtprecioventa.Text);
+                venta.producto.PrecioVentaTotal = Convert.ToDecimal(lbtotalventa.Text);
+            }
 
+            if (sucess)
+            {
                 if (Editar == false)
                 {
                     if (controller.InsertarProductos(venta.producto))
@@ -165,23 +173,25 @@ namespace SistemaVentas
                         MessageBox.Show("No se pudo insertar los datos por: " + ex);
                     }
                 }
+            }else {
+                MessageBox.Show("Ingresar la Categoria, Proveedor y Nombre del Articulo");
             }
         }
 
-        public bool ProductosValidacion()
+        public bool ProductosValidacion(int categoriaid)
         {
             bool success = false;
-            int cantidad;
 
             string nombre = txtArticulo.Text;
+
             //string descripcion = txtDescripcion.Text;
-            string monto = txtPrecio.Text;
-            string cantidadstr = txtCantidad.Text;
+            //string monto = txtPrecio.Text;
+            //string cantidadstr = txtCantidad.Text;
 
-            
-            bool cantidadvalido = Int32.TryParse(cantidadstr, out cantidad);
 
-            if(nombre != "" /*&& descripcion != ""*/ && monto != "" && cantidadvalido)
+            //bool cantidadvalido = Int32.TryParse(cantidadstr, out cantidad);
+
+            if (nombre != "" && categoriaid != 0 && proveedorId != "")
             {
                 success = true;
             }
@@ -290,7 +300,16 @@ namespace SistemaVentas
         {
             BuscarProveedor frm = new BuscarProveedor();
             AddOwnedForm(frm);
-            frm.Show();
+            frm.ShowDialog();
+            txtArticulo.Focus();
+        }
+
+        private void txtArticulo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == 13)
+            {
+                txtCantidad.Focus();
+            }
         }
     }
 }

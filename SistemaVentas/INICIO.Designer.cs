@@ -184,7 +184,7 @@
             this.btncompra.Name = "btncompra";
             this.btncompra.Size = new System.Drawing.Size(194, 34);
             this.btncompra.TabIndex = 7;
-            this.btncompra.Text = "Compra";
+            this.btncompra.Text = "Facturacion";
             this.btncompra.UseVisualStyleBackColor = false;
             this.btncompra.Click += new System.EventHandler(this.btncompra_Click);
             // 
@@ -203,7 +203,7 @@
             this.btnrecibo.Name = "btnrecibo";
             this.btnrecibo.Size = new System.Drawing.Size(194, 34);
             this.btnrecibo.TabIndex = 5;
-            this.btnrecibo.Text = "Recibos";
+            this.btnrecibo.Text = "Pago";
             this.btnrecibo.UseVisualStyleBackColor = false;
             this.btnrecibo.Click += new System.EventHandler(this.btnrecibo_Click_1);
             // 
@@ -252,7 +252,7 @@
             this.PRODUCTO.Name = "PRODUCTO";
             this.PRODUCTO.Size = new System.Drawing.Size(194, 34);
             this.PRODUCTO.TabIndex = 0;
-            this.PRODUCTO.Text = "Productos";
+            this.PRODUCTO.Text = "Compra";
             this.PRODUCTO.UseVisualStyleBackColor = false;
             this.PRODUCTO.Click += new System.EventHandler(this.PRODUCTO_Click);
             // 

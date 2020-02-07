@@ -47,5 +47,26 @@ namespace SistemaVentas
 
             this.Close();
         }
+
+        private void CrearAbono_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //Facturacion facturacion = Owner as Facturacion;
+            //ReciboController reciboc = new ReciboController();
+            
+            //reciboc.ListarAbonos(facturacion.FacturacionId);
+        }
+
+        private void CrearAbono_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Facturacion facturacion = Owner as Facturacion;
+            //ReciboController reciboc = new ReciboController();
+            //reciboc.ListarAbonos(facturacion.FacturacionId);
+        }
+
+        private void CrearAbono_Load(object sender, EventArgs e)
+        {
+            //Facturacion facturacion = Owner as Facturacion;
+            //Application.Run(Facturacion);
+        }
     }
 }

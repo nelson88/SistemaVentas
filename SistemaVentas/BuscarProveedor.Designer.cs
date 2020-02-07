@@ -175,6 +175,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "BuscarProveedor";
             this.Text = "BuscarProveedor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BuscarProveedor_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BuscarProveedor_FormClosed);
             this.Load += new System.EventHandler(this.BuscarProveedor_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btncerrar)).EndInit();

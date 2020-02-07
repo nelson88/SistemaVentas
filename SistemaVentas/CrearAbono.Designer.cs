@@ -174,6 +174,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CrearAbono";
             this.Text = "CrearAbono";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CrearAbono_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CrearAbono_FormClosed);
+            this.Load += new System.EventHandler(this.CrearAbono_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
