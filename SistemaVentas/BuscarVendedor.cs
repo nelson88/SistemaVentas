@@ -40,7 +40,8 @@ namespace SistemaVentas
         {
             CrearVendedor frm = new CrearVendedor();
 
-            frm.Show();
+            frm.ShowDialog();
+            ListVendedores();
         }
 
         private void btneditar_Click(object sender, EventArgs e)
@@ -54,7 +55,8 @@ namespace SistemaVentas
             cv.cedula = dataGridView1.CurrentRow.Cells["Cedula"].Value.ToString();
             cv.isedit = true;
 
-            cv.Show();
+            cv.ShowDialog();
+            ListVendedores();
         }
 
         private void btncerrar_Click(object sender, EventArgs e)

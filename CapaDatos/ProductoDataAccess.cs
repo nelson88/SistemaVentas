@@ -18,7 +18,7 @@ namespace CapaDatos
         {
             command.Connection = AbrirConexion();
             command.CommandText = @"SELECT p.ProductoId, pc.ProductoCategoriaId, p.ProveedorId, pr.Proveedor, 'BCM-'+p.Codigo Codigo, 
-                                           pc.Categoria, p.Articulo, p.Descripcion, p.Precio, p.Cantidad
+                                           pc.Categoria, p.Articulo, p.Descripcion, p.Precio, PrecioVenta, PrecioTotal, PrecioVentaTotal, p.Cantidad
                                     FROM dbo.Producto p
                                     INNER JOIN dbo.ProductoCategoria pc ON pc.ProductoCategoriaId = p.ProductoCategoriaId
                                     INNER JOIN dbo.Proveedor pr ON pr.ProveedorId = p.ProveedorId";
@@ -222,17 +222,25 @@ namespace CapaDatos
                 using (var comm = new SqlCommand())
                 {
                     comm.Connection = cn;
-                    comm.CommandText = @"DECLARE @CodigoMax VARCHAR(10)
-                                         DECLARE @CodigoNuevo VARCHAR(10)
-
+                    comm.CommandText = @"DECLARE @CodigoMax        VARCHAR(10),
+                                                 @CodigoNuevo      VARCHAR(10),
+                                          		 @PrecioTotal      DECIMAL(18, 2),
+                                          		 @PrecioVentaTotal DECIMAL(18, 2)
+                                         
+                                         
                                          SELECT @CodigoMax = ISNULL(max(Codigo), '00000')
                                          FROM  dbo.Producto p
                                          WHERE p.ProductoCategoriaId = @ProductoCategoriaId
-
+                                         
                                          SELECT @CodigoNuevo = dbo.GeneradorCodigoProducto(@CodigoMax);
-
-                                         INSERT INTO dbo.Producto(ProductoId, Codigo, ProductoCategoriaId, ProveedorId, Articulo, Cantidad, Descripcion, Precio, Creado, Modificado)
-                                         VALUES(NEWID(), @CodigoNuevo, @ProductoCategoriaId, @ProveedorId, @nombre, @cantidad, @descripcion, @monto, GETDATE(), GETDATE())";
+                                         
+                                         SELECT @PrecioTotal      = @monto * @cantidad;
+                                         SELECT @PrecioVentaTotal = @precioventa * @cantidad;
+                                         
+                                         INSERT INTO dbo.Producto(ProductoId, Codigo, ProductoCategoriaId, ProveedorId, Articulo, Cantidad, 
+                                                                  Descripcion, Precio, PrecioVenta, PrecioTotal, PrecioVentaTotal, Creado, Modificado)
+                                         VALUES(NEWID(), @CodigoNuevo, @ProductoCategoriaId, @ProveedorId, @nombre, @cantidad, @descripcion, 
+                                                @monto, @precioventa, @PrecioTotal, @PrecioVentaTotal, GETDATE(), GETDATE())";
                     try
                     {
                         comm.Parameters.AddWithValue("@productoId", producto.ProductoId);
@@ -242,6 +250,7 @@ namespace CapaDatos
                         comm.Parameters.AddWithValue("@cantidad", producto.Cantidad);
                         comm.Parameters.AddWithValue("@descripcion", producto.Descripcion);
                         comm.Parameters.AddWithValue("@monto", producto.Monto);
+                        comm.Parameters.AddWithValue("@precioventa", producto.PrecioVenta);
 
                         comm.CommandType = CommandType.Text;
                         comm.ExecuteNonQuery();

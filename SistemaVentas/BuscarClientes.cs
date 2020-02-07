@@ -108,7 +108,8 @@ namespace SistemaVentas
         {
             CrearCliente frm = new CrearCliente();
             
-            frm.Show();
+            frm.ShowDialog();
+            ListClientes();
         }
 
         private void btneditar_Click(object sender, EventArgs e)
@@ -122,7 +123,8 @@ namespace SistemaVentas
             cc.cedula = dataGridView1.CurrentRow.Cells["Cedula"].Value.ToString();
             cc.isedit = true;
 
-            cc.Show();
+            cc.ShowDialog();
+            ListClientes();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

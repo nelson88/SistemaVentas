@@ -43,7 +43,7 @@ namespace SistemaVentas
         {
             CompraProducto cp = new CompraProducto();
             AddOwnedForm(cp);
-            cp.Show();
+            cp.ShowDialog();
             //string ProductoId = dataGridView1.CurrentRow.Cells["ProductoId"].Value.ToString();
             //string ProductoCategoriaId = dataGridView1.CurrentRow.Cells["ProductoCategoriaId"].Value.ToString();
             //string Codigo = dataGridView1.CurrentRow.Cells["Codigo"].Value.ToString();
@@ -77,14 +77,14 @@ namespace SistemaVentas
         {
             BuscarClientes frm = new BuscarClientes();
             AddOwnedForm(frm);
-            frm.Show();
+            frm.ShowDialog();
         }
 
         private void comboBox1_Click(object sender, EventArgs e)
         {
             BuscarClientes frm = new BuscarClientes();
             AddOwnedForm(frm);
-            frm.Show();
+            frm.ShowDialog();
         }
 
         private void btnguardar_Click(object sender, EventArgs e)
@@ -130,14 +130,14 @@ namespace SistemaVentas
         {
             BuscarClientes frm = new BuscarClientes();
             AddOwnedForm(frm);
-            frm.Show(); 
+            frm.ShowDialog(); 
         }
 
         private void txtvendedor_Click(object sender, EventArgs e)
         {
             BuscarVendedor frm = new BuscarVendedor();
             AddOwnedForm(frm);
-            frm.Show();
+            frm.ShowDialog();
         }
 
         private void txtvendedor_TextChanged(object sender, EventArgs e)

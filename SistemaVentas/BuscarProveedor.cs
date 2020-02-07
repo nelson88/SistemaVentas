@@ -32,7 +32,8 @@ namespace SistemaVentas
         {
             CrearProveedor frm = new CrearProveedor();
 
-            frm.Show();
+            frm.ShowDialog();
+            ListProveedor();
         }
 
         private void btneditar_Click(object sender, EventArgs e)
@@ -48,7 +49,8 @@ namespace SistemaVentas
 
             frm.isedit = true;
             
-            frm.Show();
+            frm.ShowDialog();
+            ListProveedor();
         }
 
         private void btnminimizar_Click(object sender, EventArgs e)

@@ -64,9 +64,6 @@ namespace SistemaVentas
                 {
                     if (cli.Insertarcli(venta.cliente))
                     {
-                        
-                        BuscarClientes bclientes = new BuscarClientes();
-                        bclientes.ListClientes();
                         this.Close();
                         //LimpiarTextBox();
                         //ObtenerClientes();

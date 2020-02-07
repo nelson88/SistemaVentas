@@ -36,9 +36,7 @@ namespace CapaEntidad
        public int Cantidad { get; set; }
        public string Descripcion { get; set; }
        public decimal Monto { get; set; }
-       public decimal PrecioTotal { get; set; }
        public decimal PrecioVenta { get; set; }
-       public decimal PrecioVentaTotal { get; set; }
        public DateTime Creado { get; set; }
        public DateTime Modificado { get; set; }
     }

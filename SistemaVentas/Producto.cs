@@ -138,12 +138,10 @@ namespace SistemaVentas
             }
             if(txtPrecio.Text != "") {
                 venta.producto.Cantidad = Convert.ToInt32(txtCantidad.Text);
-                venta.producto.PrecioTotal = Convert.ToDecimal(lbtotacompra.Text);
             }
             if (txtprecioventa.Text != "")
             {
                 venta.producto.PrecioVenta = Convert.ToInt32(txtprecioventa.Text);
-                venta.producto.PrecioVentaTotal = Convert.ToDecimal(lbtotalventa.Text);
             }
 
             if (sucess)
