@@ -93,12 +93,15 @@ namespace SistemaVentas
             FacturacionModel facturacion = new FacturacionModel();
             DataRowView drfrecuenca = cbmodopago.SelectedItem as DataRowView;
 
+            facturacion.Codigo = txtcodigo.Text;
             facturacion.TipoPago = rbcredito.Checked == true ? 1 : 2;
             facturacion.Fecha = (DateTime)dpfecha.Value;
             facturacion.ClienteId = new Guid(clienteId);
             facturacion.VendedorId = new Guid(vendedorId);
             facturacion.FrecuenciaId = (int)drfrecuenca.Row.ItemArray[0];
-            facturacion.AbonoInicial = Convert.ToDecimal(txtabonoinicial.Text);
+            if(txtabonoinicial.Text != "") { 
+                facturacion.AbonoInicial = Convert.ToDecimal(txtabonoinicial.Text);
+            }
             facturacion.Observaciones = txtobservaciones.Text;
             facturacion.TotalPago = totalcompra;
             facturacion.Descuento = totaldescuento;
@@ -168,6 +171,36 @@ namespace SistemaVentas
 
             lbdescuento.Text = "0.00";
             lbtotalcompra.Text = "0.00";
+        }
+
+        private void rbcontado_Click(object sender, EventArgs e)
+        {
+            if (rbcredito.Checked)
+            {
+                lbabonoinicial.Visible = true;
+                txtabonoinicial.Visible = true;
+            }
+            else
+            {
+                lbabonoinicial.Visible = false;
+                txtabonoinicial.Visible = false;
+                txtabonoinicial.Text = "";
+            }
+        }
+
+        private void rbcredito_Click(object sender, EventArgs e)
+        {
+            if (rbcredito.Checked)
+            {
+                lbabonoinicial.Visible = true;
+                txtabonoinicial.Visible = true;
+            }
+            else
+            {
+                lbabonoinicial.Visible = false;
+                txtabonoinicial.Visible = false;
+                txtabonoinicial.Text = "";
+            }
         }
     }
 }

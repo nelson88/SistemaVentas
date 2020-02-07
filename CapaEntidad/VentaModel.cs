@@ -88,7 +88,7 @@ namespace CapaEntidad
         public Guid FacturacionId { get; set; }
         public Guid ClienteId { get; set; }
         public Guid VendedorId { get; set; }
-        //public decimal Monto { get; set; }
+        public string Codigo { get; set; }
         public decimal AbonoInicial { get; set; }
         public decimal Descuento { get; set; }
         public decimal TotalPago { get; set; }

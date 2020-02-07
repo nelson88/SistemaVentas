@@ -63,9 +63,9 @@ namespace SistemaVentas
                
                     decimal descuento = PrecioProducto - Precio;
                     artifac.ProductoId = new Guid(ProductoId);
-                    artifac.Cantidad = Convert.ToInt32(Cantidad);
-                    artifac.Precio = Precio;
-                    artifac.Descuento = descuento;
+                    artifac.Cantidad =  Cantidad;
+                    artifac.Precio = Precio * Cantidad;
+                    artifac.Descuento = descuento * Cantidad;
 
                     decimal totalPrecio = Precio * Cantidad;
                     decimal totaldesc = descuento * Cantidad;

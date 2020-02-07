@@ -162,13 +162,13 @@ namespace SistemaVentas
 
         private void Facturacion_Load_1(object sender, EventArgs e)
         {
-            ObtenerCompras();
+            ObtnerComprasPendientes();
         }
 
-        private void ObtenerCompras()
+        private void ObtnerComprasPendientes()
         {
             CompraController con = new CompraController();
-            dataGridView1.DataSource = con.ObtenerCompra();
+            dataGridView1.DataSource = con.ObtnerComprasPendientes();
             dataGridView1.Columns["FacturacionId"].Visible = false;
             dataGridView1.Columns["ClienteId"].Visible = false;
             dataGridView1.Columns["SaldoPendiente"].Visible = false;
@@ -217,8 +217,12 @@ namespace SistemaVentas
         private void btncancelarfactura_Click(object sender, EventArgs e)
         {
             CancelarFactura cp = new CancelarFactura();
+            ReciboController reciboc = new ReciboController();
+
             AddOwnedForm(cp);
-            cp.Show();
+            cp.ShowDialog();
+            dataGridView2.DataSource = reciboc.ListarAbonos(FacturacionId);
+            ObtnerComprasPendientes();
         }
         //public bool ProductosValidacion()
         //{

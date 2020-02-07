@@ -21,7 +21,8 @@ namespace CapaDatos
                                            pc.Categoria, p.Articulo, p.Descripcion, p.Precio, PrecioVenta, PrecioTotal, PrecioVentaTotal, p.Cantidad
                                     FROM dbo.Producto p
                                     INNER JOIN dbo.ProductoCategoria pc ON pc.ProductoCategoriaId = p.ProductoCategoriaId
-                                    INNER JOIN dbo.Proveedor pr ON pr.ProveedorId = p.ProveedorId";
+                                    INNER JOIN dbo.Proveedor pr ON pr.ProveedorId = p.ProveedorId
+                                    WHERE p.Cantidad > 0";
             leer = command.ExecuteReader();
             dt.Load(leer);
             CerrarConexion();

@@ -38,7 +38,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbabonoinicial = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -53,6 +53,8 @@
             this.txtcliente = new System.Windows.Forms.TextBox();
             this.txtvendedor = new System.Windows.Forms.TextBox();
             this.txtobservaciones = new System.Windows.Forms.TextBox();
+            this.txtcodigo = new System.Windows.Forms.TextBox();
+            this.lbcodigo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -87,7 +89,7 @@
             // dpfecha
             // 
             this.dpfecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpfecha.Location = new System.Drawing.Point(123, 119);
+            this.dpfecha.Location = new System.Drawing.Point(199, 119);
             this.dpfecha.Name = "dpfecha";
             this.dpfecha.Size = new System.Drawing.Size(135, 20);
             this.dpfecha.TabIndex = 3;
@@ -137,11 +139,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(57, 118);
+            this.label1.Location = new System.Drawing.Point(142, 123);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 16);
+            this.label1.Size = new System.Drawing.Size(51, 16);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Fecha";
+            this.label1.Text = "Fecha:";
             // 
             // label2
             // 
@@ -153,15 +155,15 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "Observaciones";
             // 
-            // label3
+            // lbabonoinicial
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(559, 85);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 16);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Abono inical";
+            this.lbabonoinicial.AutoSize = true;
+            this.lbabonoinicial.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbabonoinicial.Location = new System.Drawing.Point(559, 85);
+            this.lbabonoinicial.Name = "lbabonoinicial";
+            this.lbabonoinicial.Size = new System.Drawing.Size(88, 16);
+            this.lbabonoinicial.TabIndex = 15;
+            this.lbabonoinicial.Text = "Abono inical";
             // 
             // label4
             // 
@@ -187,11 +189,11 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(57, 166);
+            this.label7.Location = new System.Drawing.Point(136, 166);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 16);
+            this.label7.Size = new System.Drawing.Size(57, 16);
             this.label7.TabIndex = 19;
-            this.label7.Text = "Cliente";
+            this.label7.Text = "Cliente:";
             // 
             // label8
             // 
@@ -215,25 +217,27 @@
             // 
             this.rbcredito.AutoSize = true;
             this.rbcredito.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbcredito.Location = new System.Drawing.Point(281, 164);
+            this.rbcredito.Location = new System.Drawing.Point(112, 210);
             this.rbcredito.Name = "rbcredito";
             this.rbcredito.Size = new System.Drawing.Size(72, 20);
             this.rbcredito.TabIndex = 22;
             this.rbcredito.TabStop = true;
             this.rbcredito.Text = "Credito";
             this.rbcredito.UseVisualStyleBackColor = true;
+            this.rbcredito.Click += new System.EventHandler(this.rbcredito_Click);
             // 
             // rbcontado
             // 
             this.rbcontado.AutoSize = true;
             this.rbcontado.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbcontado.Location = new System.Drawing.Point(281, 203);
+            this.rbcontado.Location = new System.Drawing.Point(223, 209);
             this.rbcontado.Name = "rbcontado";
             this.rbcontado.Size = new System.Drawing.Size(79, 20);
             this.rbcontado.TabIndex = 23;
             this.rbcontado.TabStop = true;
             this.rbcontado.Text = "Contado";
             this.rbcontado.UseVisualStyleBackColor = true;
+            this.rbcontado.Click += new System.EventHandler(this.rbcontado_Click);
             // 
             // label6
             // 
@@ -279,7 +283,7 @@
             // 
             // txtcliente
             // 
-            this.txtcliente.Location = new System.Drawing.Point(123, 166);
+            this.txtcliente.Location = new System.Drawing.Point(199, 162);
             this.txtcliente.Name = "txtcliente";
             this.txtcliente.Size = new System.Drawing.Size(135, 20);
             this.txtcliente.TabIndex = 28;
@@ -302,11 +306,30 @@
             this.txtobservaciones.Size = new System.Drawing.Size(121, 57);
             this.txtobservaciones.TabIndex = 30;
             // 
+            // txtcodigo
+            // 
+            this.txtcodigo.Location = new System.Drawing.Point(199, 78);
+            this.txtcodigo.Name = "txtcodigo";
+            this.txtcodigo.Size = new System.Drawing.Size(135, 20);
+            this.txtcodigo.TabIndex = 31;
+            // 
+            // lbcodigo
+            // 
+            this.lbcodigo.AutoSize = true;
+            this.lbcodigo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbcodigo.Location = new System.Drawing.Point(57, 82);
+            this.lbcodigo.Name = "lbcodigo";
+            this.lbcodigo.Size = new System.Drawing.Size(136, 16);
+            this.lbcodigo.TabIndex = 32;
+            this.lbcodigo.Text = "Codigo Facturacion:";
+            // 
             // Compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 612);
+            this.Controls.Add(this.lbcodigo);
+            this.Controls.Add(this.txtcodigo);
             this.Controls.Add(this.txtobservaciones);
             this.Controls.Add(this.txtvendedor);
             this.Controls.Add(this.txtcliente);
@@ -321,7 +344,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lbabonoinicial);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -352,7 +375,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbabonoinicial;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
@@ -369,5 +392,7 @@
         public System.Windows.Forms.DataGridView dataGridView2;
         public System.Windows.Forms.Label lbtotalcompra;
         public System.Windows.Forms.Label lbdescuento;
+        private System.Windows.Forms.TextBox txtcodigo;
+        private System.Windows.Forms.Label lbcodigo;
     }
 }

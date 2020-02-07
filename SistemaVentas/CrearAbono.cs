@@ -29,23 +29,29 @@ namespace SistemaVentas
             AbonoModel abonoModel = new AbonoModel();
             Facturacion facturacion = Owner as Facturacion;
             ReciboController reciboc = new ReciboController();
-            decimal saldoPendiente = 0;
+            decimal saldoPendiente = Convert.ToDecimal(facturacion.SaldoPendiente); ;
 
             abonoModel.FacturacionId = facturacion.FacturacionId;
             abonoModel.Codigo = txtcodigo.Text;
             abonoModel.Fecha = (DateTime)dbfecha.Value;
-            abonoModel.Abono = Convert.ToDecimal(txtabono.Text);
+            abonoModel.Abono = Convert.ToDecimal(txtabono.Text);            
             abonoModel.Observacion = txtobservacion.Text;
+            if (abonoModel.Abono > saldoPendiente)
+            {
+                MessageBox.Show("El monto del abono no puede ser mayor al saldo pendiente.");
+            }
+            else
+            { 
+                reciboc.InsertarAbono(abonoModel);
 
-            reciboc.InsertarAbono(abonoModel);
+                saldoPendiente = Convert.ToDecimal(facturacion.SaldoPendiente) - abonoModel.Abono;
 
-            saldoPendiente = Convert.ToDecimal(facturacion.SaldoPendiente) - abonoModel.Abono;
+                facturacion.lbsaldopendiente.Text = Convert.ToString(saldoPendiente);
 
-            facturacion.lbsaldopendiente.Text = Convert.ToString(saldoPendiente);
+                reciboc.ListarAbonos(facturacion.FacturacionId);
 
-            reciboc.ListarAbonos(facturacion.FacturacionId);
-
-            this.Close();
+                this.Close();
+            }
         }
 
         private void CrearAbono_FormClosed(object sender, FormClosedEventArgs e)

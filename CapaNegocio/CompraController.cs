@@ -20,6 +20,13 @@ namespace CapaNegocio
             return dt;
         }
 
+        public DataTable ObtnerComprasPendientes()
+        {
+            DataTable dt = new DataTable();
+            dt = data.ObtnerComprasPendientes();
+            return dt;
+        }
+
         public DataTable ObtnerFrecuencia()
         {
             DataTable dt = new DataTable();

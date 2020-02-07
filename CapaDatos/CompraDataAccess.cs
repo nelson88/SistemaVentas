@@ -30,6 +30,22 @@ namespace CapaDatos
 
         }
 
+        public DataTable ObtnerComprasPendientes()
+        {
+            command.Connection = AbrirConexion();
+            command.CommandText = @"SELECT f.FacturacionId, c.ClienteId, c.PrimerNombre, 
+                                    f.Fecha, f.TotalPago, f.Observaciones, f.SaldoPendiente
+                                    FROM dbo.Facturacion f
+                                    INNER JOIN dbo.Cliente c ON c.ClienteId = f.ClienteId
+                                    WHERE f.SaldoPendiente > 0";
+            leer = command.ExecuteReader();
+            dt.Load(leer);
+            leer.Close();
+            CerrarConexion();
+            return dt;
+
+        }
+
         public DataTable ObtnerFrecuencia()
         {
             command.Connection = AbrirConexion();
@@ -70,11 +86,20 @@ namespace CapaDatos
                                                                      AbonoInicial, Descuento, TotalPago, FrecuenciaId, Creado, 
                                          							 Modificado, Dias, SaldoPendiente, Observaciones)
                                          VALUES(@FacturacionId, @VendedorId, @ClienteId, @Fecha, @TipoPago, 
-                                                @AbonoInicial, @Descuento, @TotalPago, @FrecuenciaId, GETDATE(), 
-                                          	    GETDATE(), 0, @TotalPago, @Observaciones)";
+                                                CASE WHEN @TipoPago = 1 THEN @AbonoInicial ELSE @TotalPago END, @Descuento, @TotalPago, @FrecuenciaId, GETDATE(), 
+                                          	    GETDATE(), 0, 0, @Observaciones)
+                                         
+                                         UPDATE dbo.Facturacion
+                                         SET SaldoPendiente = CASE WHEN TipoPago = 1 THEN TotalPago - AbonoInicial ELSE 0 END
+                                         WHERE FacturacionId = @FacturacionId
+                                         
+                                         INSERT INTO dbo.Abono(AbonoId, Abono, Codigo, FacturacionId, Fecha, Observacion, Creado, Modificado)
+                                         VALUES(NEWID(), CASE WHEN @TipoPago = 1 THEN @AbonoInicial ELSE @TotalPago END, @CodigoFactura,
+                                                @FacturacionId, @Fecha, 'Abono Inical', GETDATE(), GETDATE())";
                     try
                     {
                         comm.Parameters.AddWithValue("@FacturacionId", compra.FacturacionId);
+                        comm.Parameters.AddWithValue("@CodigoFactura", compra.Codigo);
                         comm.Parameters.AddWithValue("@VendedorId", compra.VendedorId);
                         comm.Parameters.AddWithValue("@ClienteId", compra.ClienteId);
                         comm.Parameters.AddWithValue("@Fecha", compra.Fecha);
@@ -125,7 +150,7 @@ namespace CapaDatos
                             comm.Parameters.AddWithValue("@Cantidad", articFac.Cantidad);
                             comm.Parameters.AddWithValue("@Precio", articFac.Precio);
                             comm.Parameters.AddWithValue("@Descuento", articFac.Descuento);
-
+                            
                             comm.CommandType = CommandType.Text;
                             comm.ExecuteNonQuery();
                         }
