@@ -60,6 +60,7 @@ namespace SistemaVentas
             txtArticulo.Text = "";
             txtObservacion.Text = "";
             txtPrecio.Text = "";
+            txtprecioventa.Text = "";
             txtCantidad.Text = "";
         }
 
