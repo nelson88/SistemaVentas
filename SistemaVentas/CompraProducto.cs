@@ -76,7 +76,7 @@ namespace SistemaVentas
                     compras.lbtotalcompra.Text = Convert.ToString(compras.totalcompra);
                     compras.lbdescuento.Text = Convert.ToString(compras.totaldescuento);
 
-                    int rowIndex = compras.dataGridView1.CurrentCell.RowIndex;
+                    int rowIndex = compras.dataGridView2.CurrentCell.RowIndex;
                     compras.dataGridView1.Rows.RemoveAt(rowIndex);
 
                     compras.dataGridView2.Columns.Add("productoId", "ProductoId");

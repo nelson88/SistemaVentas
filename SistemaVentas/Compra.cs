@@ -96,22 +96,70 @@ namespace SistemaVentas
             facturacion.Codigo = txtcodigo.Text;
             facturacion.TipoPago = rbcredito.Checked == true ? 1 : 2;
             facturacion.Fecha = (DateTime)dpfecha.Value;
-            facturacion.ClienteId = new Guid(clienteId);
-            facturacion.VendedorId = new Guid(vendedorId);
-            facturacion.FrecuenciaId = (int)drfrecuenca.Row.ItemArray[0];
-            if(txtabonoinicial.Text != "") { 
-                facturacion.AbonoInicial = Convert.ToDecimal(txtabonoinicial.Text);
-            }
-            facturacion.Observaciones = txtobservaciones.Text;
-            facturacion.TotalPago = totalcompra;
-            facturacion.Descuento = totaldescuento;
-            facturacion.FacturacionId = Guid.NewGuid();
+            
+            if(ValidarInsertarCompras())
+            { 
+                facturacion.ClienteId = new Guid(clienteId);
+                facturacion.VendedorId = new Guid(vendedorId);
+                facturacion.FrecuenciaId = (int)drfrecuenca.Row.ItemArray[0];
+                if(txtabonoinicial.Text != "") { 
+                    facturacion.AbonoInicial = Convert.ToDecimal(txtabonoinicial.Text);
+                }
+                facturacion.Observaciones = txtobservaciones.Text;
+                facturacion.TotalPago = totalcompra;
+                facturacion.Descuento = totaldescuento;
+                facturacion.FacturacionId = Guid.NewGuid();
 
-            comprac.InsertarCompra(facturacion, af);
-            LimpiarCampos();
-            ObtenerProductos();
-            dataGridView2.Rows.Clear();
-            dataGridView2.Refresh();
+                comprac.InsertarCompra(facturacion, af);
+                LimpiarCampos();
+                ObtenerProductos();
+                dataGridView2.Rows.Clear();
+                dataGridView2.Refresh();
+            }
+            else
+            {
+                if (rbcredito.Checked)
+                {
+                    MessageBox.Show("Los siguientes campos son requeridos \n" +
+                    "* Codigo Facturacion \n" +
+                    "* Cliente \n" +
+                    "* Vendedor \n" +
+                    "* Abono inicial \n" +
+                    "* Modo de pago \n");
+                }
+                else
+                {
+                    MessageBox.Show("Los siguientes campos son requeridos \n" +
+                    "* Codigo Facturacion \n" +
+                    "* Cliente \n" +
+                    "* Vendedor \n");
+                }
+                
+            }
+        }
+
+        private bool ValidarInsertarCompras()
+        {
+            bool success = true;
+            DataRowView drfrecuenca = cbmodopago.SelectedItem as DataRowView;
+            int frecuenciaid = (int)drfrecuenca.Row.ItemArray[0];
+
+            if (rbcredito.Checked)
+            {
+                if (clienteId == null || vendedorId == null || frecuenciaid == 0 || txtabonoinicial.Text == "" || txtobservaciones.Text == "" || totalcompra <= 0)
+                {
+                    success = false;
+                }
+            }
+            else
+            {
+                if (clienteId == null || vendedorId == null || txtobservaciones.Text == "" || totalcompra <= 0)
+                {
+                    success = false;
+                }
+            }
+
+            return success;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -180,12 +228,19 @@ namespace SistemaVentas
             {
                 lbabonoinicial.Visible = true;
                 txtabonoinicial.Visible = true;
+
+                lbmodepago.Visible = true;
+                cbmodopago.Visible = true;
             }
             else
             {
                 lbabonoinicial.Visible = false;
                 txtabonoinicial.Visible = false;
                 txtabonoinicial.Text = "";
+
+                lbmodepago.Visible = false;
+                cbmodopago.Visible = false;
+                ListFrecuencia();
             }
         }
 
@@ -195,13 +250,57 @@ namespace SistemaVentas
             {
                 lbabonoinicial.Visible = true;
                 txtabonoinicial.Visible = true;
+
+                lbmodepago.Visible = true;
+                cbmodopago.Visible = true;
+
             }
             else
             {
                 lbabonoinicial.Visible = false;
                 txtabonoinicial.Visible = false;
                 txtabonoinicial.Text = "";
+
+                lbmodepago.Visible = false;
+                cbmodopago.Visible = false;
+                ListFrecuencia();
+
             }
+        }
+
+        private void btnquitar_Click(object sender, EventArgs e)
+        {
+            //string ProductoId = dataGridView2.CurrentRow.Cells["ProductoId"].Value.ToString();
+            //string ProductoCategoriaId = dataGridView2.CurrentRow.Cells["ProductoCategoriaId"].Value.ToString();
+            //string Codigo = dataGridView2.CurrentRow.Cells["Codigo"].Value.ToString();
+            //string Categoria = dataGridView2.CurrentRow.Cells["Categoria"].Value.ToString();
+            //string Articulo = dataGridView2.CurrentRow.Cells["Articulo"].Value.ToString();
+            //string Descripcion = dataGridView2.CurrentRow.Cells["Descripcion"].Value.ToString();
+            //decimal PrecioProducto = Convert.ToDecimal(dataGridView2.CurrentRow.Cells["PrecioVenta"].Value.ToString());
+
+            //int rowIndex = dataGridView2.CurrentCell.RowIndex;
+            //dataGridView2.Rows.RemoveAt(rowIndex);
+
+            ////dataGridView1.Columns.Add("productoId", "ProductoId");
+            ////dataGridView1.Columns.Add("productoCategoriaId", "ProductoCategoriaId");
+            ////dataGridView1.Columns.Add("codigo", "Codigo");
+            //////
+            ////dataGridView1.Columns.Add("cantidad", "Cantidad");
+            ////dataGridView1.Columns.Add("precio", "Precio");
+            ////dataGridView1.Columns.Add("totalprecio", "TotalPrecio");
+            ////dataGridView1.Columns.Add("descuento", "Descuento");
+            ////dataGridView1.Columns.Add("totaldescuento", "TotalDescuento");
+            //////
+            ////dataGridView1.Columns.Add("categoria", "Categoria");
+            ////dataGridView1.Columns.Add("articulo", "Articulo");
+            ////dataGridView1.Columns.Add("descripcion", "Descripcion");
+
+
+            //dataGridView1.Rows.Add(ProductoId, ProductoCategoriaId, Codigo, Cantidad, Precio, Convert.ToString(compras.totalcompra), Convert.ToString(descuento), Convert.ToString(compras.totaldescuento), Categoria, Articulo, Descripcion);
+
+            //dataGridView2.Columns["ProductoId"].Visible = false;
+            //dataGridView2.Columns["ProductoCategoriaId"].Visible = false;
+
         }
     }
 }

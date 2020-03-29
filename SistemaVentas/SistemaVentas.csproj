@@ -250,12 +250,14 @@
     <EmbeddedResource Include="CrearCliente.resx">
       <DependentUpon>CrearCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReporteDiario.rdlc" />
     <EmbeddedResource Include="VerAbonos.resx">
       <DependentUpon>VerAbonos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VerProductos.resx">
       <DependentUpon>VerProductos.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\CapaNegocio.ReciboController.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -300,6 +302,7 @@
   <ItemGroup>
     <None Include="Resources\prodcutos.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
